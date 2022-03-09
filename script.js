@@ -1,5 +1,5 @@
-$(document).ready(function () {
-  $(window).scroll(function () {
+$(document).ready(async function () {
+  $(window).scroll(async function () {
     // sticky navbar on scroll script
     if (this.scrollY > 20) {
       $(".navbar").addClass("sticky");
@@ -16,32 +16,32 @@ $(document).ready(function () {
   });
 
   // slide-up script
-  $(".scroll-up-btn").click(function () {
+  $(".scroll-up-btn").click(async function () {
     $("html").animate({ scrollTop: 0 });
     // removing smooth scroll on slide-up button click
     $("html").css("scrollBehavior", "auto");
   });
 
-  $(".navbar .menu li a").click(function () {
+  $(".navbar .menu li a").click(async function () {
     // applying again smooth scroll on menu items click
     $("html").css("scrollBehavior", "smooth");
   });
 
   // toggle menu/navbar script
-  $(".menu-btn").click(function () {
+  $(".menu-btn").click(async function () {
     $(".navbar .menu").toggleClass("active");
     $(".menu-btn i").toggleClass("active");
   });
 
   // typing text animation script
-  var typed = new Typed(".typing", {
+  let typed = new Typed(".typing", {
     strings: ["Developer", "Freelancer"],
     typeSpeed: 100,
     backSpeed: 60,
     loop: true,
   });
 
-  var typed = new Typed(".typing-2", {
+  let typed2 = new Typed(".typing-2", {
     strings: ["Developer", "Freelancer"],
     typeSpeed: 100,
     backSpeed: 60,
