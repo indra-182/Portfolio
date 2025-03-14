@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { X, ChevronRight, ChevronLeft } from "lucide-react";
 import { useRef, MouseEvent } from "react";
-import { ProjectModalProps } from "../types/project/type";
+import { ProjectModalProps } from "../../types/project/type";
 
 export default function ProjectModal({
   project,
@@ -43,7 +43,7 @@ export default function ProjectModal({
             <p className="text-gray-300">{project.description}</p>
             <p className="text-gray-300">{project.fullDescription}</p>
             <div>
-              <h3 className="font-semibold mb-2 text-primary-500">
+              <h3 className="font-semibold mb-2 text-purple-500">
                 Tech Stack:
               </h3>
               <ul className="list-disc list-inside">
