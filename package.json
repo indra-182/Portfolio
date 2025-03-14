@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -12,6 +12,7 @@
     "@payloadcms/db-postgres": "^3.28.1",
     "@payloadcms/next": "^3.28.1",
     "@payloadcms/richtext-lexical": "^3.28.1",
+    "babel-plugin-react-compiler": "^19.0.0-beta-bafa41b-20250307",
     "graphql": "^16.10.0",
     "lucide-react": "^0.479.0",
     "next": "15.2.2",

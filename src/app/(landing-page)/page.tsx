@@ -1,3 +1,4 @@
+import PostsSection from "./components/PostsSection";
 import ProjectSection from "./components/ProjectSection";
 
 export default function Home() {
@@ -32,6 +33,7 @@ export default function Home() {
         </div>
       </div>
       <ProjectSection />
+      <PostsSection />
     </div>
   );
 }
