@@ -3,7 +3,7 @@ import { PostPageParams } from "../../../types/posts/type";
 import { RichText as SerializeRichText } from "@payloadcms/richtext-lexical/react";
 
 const Page = async ({ params }: PostPageParams) => {
-  const { postId } = await params;
+  const { postId } = params;
   const payload = await fetchPayload();
 
   const post = await payload.find({
