@@ -1,4 +1,6 @@
-export const Posts: any = {
+import { CollectionConfig } from "payload";
+
+export const Posts: CollectionConfig = {
   slug: "posts",
   fields: [
     {
@@ -9,6 +11,12 @@ export const Posts: any = {
     {
       name: "content",
       type: "richText",
+    },
+    {
+      name: "featuredImage",
+      type: "upload",
+      relationTo: "media",
+      required: false,
     },
     {
       name: "includedInBlog",

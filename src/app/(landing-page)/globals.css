@@ -24,3 +24,70 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer components {
+  .payload-richtext a {
+    @apply text-purple-200 hover:text-purple-500;
+  }
+
+  .payload-richtext h1 {
+    @apply text-3xl font-bold mt-8 mb-4;
+  }
+
+  .payload-richtext h2 {
+    @apply text-2xl font-bold mt-6 mb-3;
+  }
+
+  .payload-richtext h3 {
+    @apply text-xl font-bold mt-5 mb-2;
+  }
+
+  .payload-richtext p {
+    @apply my-4 leading-relaxed;
+  }
+
+  .payload-richtext ul {
+    @apply list-disc pl-6 my-4;
+  }
+
+  .payload-richtext ol {
+    @apply list-decimal pl-6 my-4;
+  }
+
+  .payload-richtext li {
+    @apply mb-1;
+  }
+
+  .payload-richtext blockquote {
+    @apply border-l-4 border-purple-300 pl-4 italic my-6;
+  }
+
+  .payload-richtext code {
+    @apply bg-gray-800 text-gray-200 px-1 py-0.5 rounded font-mono text-sm;
+  }
+
+  .payload-richtext pre {
+    @apply bg-gray-800 p-4 rounded-lg my-6 overflow-x-auto;
+  }
+
+  .payload-richtext picture {
+    @apply flex justify-center;
+  }
+
+  .payload-richtext img {
+    @apply max-w-full h-auto my-6 rounded-lg;
+  }
+
+  .payload-richtext table {
+    @apply w-full border-collapse my-6;
+  }
+
+  .payload-richtext th,
+  .payload-richtext td {
+    @apply border border-gray-700 px-4 py-2;
+  }
+
+  .payload-richtext hr {
+    @apply my-8 border-t border-gray-700;
+  }
+}
