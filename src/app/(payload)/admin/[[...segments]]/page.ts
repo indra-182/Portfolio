@@ -4,10 +4,47 @@
 import config from "../../../payload.config";
 import { RootPage, generatePageMetadata } from "@payloadcms/next/views";
 import { importMap } from "../importMap";
+import { Metadata } from "next";
 
-export const generateMetadata = ({ params, searchParams }: { params: Record<string, string>; searchParams: Record<string, string | string[]> }) =>
-  generatePageMetadata({ config, params: Promise.resolve(params), searchParams: Promise.resolve(searchParams) });
+type PageProps = {
+  params: { segments?: string[] };
+  searchParams: Record<string, string | string[] | undefined>;
+};
 
-const Page = ({ params, searchParams }: { params: Record<string, string>; searchParams: Record<string, string | string[]> }) => RootPage({ config, params: Promise.resolve({ segments: params.segments ? [params.segments].flat() : [] }), searchParams: Promise.resolve(searchParams), importMap });
+export const generateMetadata = async ({
+  params,
+  searchParams,
+}: PageProps): Promise<Metadata> => {
+  const filteredSearchParams: Record<string, string | string[]> = {};
+  Object.entries(searchParams).forEach(([key, value]) => {
+    if (value !== undefined) {
+      filteredSearchParams[key] = value;
+    }
+  });
+
+  return generatePageMetadata({
+    config,
+    params: Promise.resolve(params),
+    searchParams: Promise.resolve(filteredSearchParams),
+  });
+};
+
+const Page = async ({ params, searchParams }: PageProps) => {
+  const filteredSearchParams: Record<string, string | string[]> = {};
+  Object.entries(searchParams).forEach(([key, value]) => {
+    if (value !== undefined) {
+      filteredSearchParams[key] = value;
+    }
+  });
+
+  return RootPage({
+    config,
+    params: Promise.resolve({
+      segments: params.segments || [],
+    }),
+    searchParams: Promise.resolve(filteredSearchParams),
+    importMap,
+  });
+};
 
 export default Page;
