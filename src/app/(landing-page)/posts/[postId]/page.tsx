@@ -6,7 +6,7 @@ const Page = async ({ params }: PostPageParams) => {
   const { postId } = await params;
   const payload = await fetchPayload();
 
-  let post = await payload.find({
+  const post = await payload.find({
     collection: "posts",
     where: {
       id: {
@@ -17,8 +17,7 @@ const Page = async ({ params }: PostPageParams) => {
 
   if (!post.docs || post.docs.length === 0) return <div>Post not found</div>;
 
-  let data = post.docs[0];
-  console.log(data);
+  const data = post.docs[0];
 
   return (
     <div className="container mx-auto p-8 pb-20 sm:p-20">
