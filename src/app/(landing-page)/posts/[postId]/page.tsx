@@ -1,14 +1,10 @@
 import { fetchPayload } from "../../../../lib/payload";
 import { RichText as SerializeRichText } from "@payloadcms/richtext-lexical/react";
 
-interface Props {
-  params: {
-    postId: string;
-  };
-}
+type Params = Promise<{ postId: string }>;
 
-const Page = async ({ params }: Props) => {
-  const { postId } = params;
+const Page = async (props: { params: Params }) => {
+  const { postId } = await props.params;
   const payload = await fetchPayload();
 
   const post = await payload.find({
