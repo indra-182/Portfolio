@@ -1,8 +1,13 @@
 import { fetchPayload } from "../../../../lib/payload";
-import { PostPageParams } from "../../../types/posts/type";
 import { RichText as SerializeRichText } from "@payloadcms/richtext-lexical/react";
 
-const Page = async ({ params }: PostPageParams) => {
+interface Props {
+  params: {
+    postId: string;
+  };
+}
+
+const Page = async ({ params }: Props) => {
   const { postId } = params;
   const payload = await fetchPayload();
 
