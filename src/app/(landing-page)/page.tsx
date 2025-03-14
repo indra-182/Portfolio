@@ -17,8 +17,8 @@ export default function Home() {
           <span className="block text-purple-600">Frontend Web Developer</span>
         </h1>
         <p className="mt-6 text-xl text-gray-300 leading-8">
-          Hello! I'm Mahadi Indra, a passionate Front End Web Developer with 3
-          years of experience in crafting dynamic and user-friendly web
+          Hello! I&apos;m Mahadi Indra, a passionate Front End Web Developer
+          with 3 years of experience in crafting dynamic and user-friendly web
           applications. I love transforming ideas into seamless digital
           experiences.
         </p>
