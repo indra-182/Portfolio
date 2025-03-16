@@ -1,3 +1,4 @@
+import Link from "next/link";
 import PostsSection from "./components/PostsSection";
 import ProjectSection from "./components/ProjectSection";
 
@@ -24,9 +25,12 @@ export default function Home() {
           experiences.
         </p>
         <div className="flex mt-10 gap-4">
-          <button className="px-5 py-5 rounded-lg bg-purple-600 text-white font-medium hover:bg-purple-500 hover:cursor-pointer">
+          <Link
+            href={`/posts/8`}
+            className="px-5 py-5 rounded-lg bg-purple-600 text-white font-medium hover:bg-purple-500 hover:cursor-pointer"
+          >
             About Me
-          </button>
+          </Link>
           <button className="px-5 py-5 rounded-lg border border-gray-600  font-medium hover:border-purple-500 hover:cursor-pointer">
             Contact Me
           </button>
