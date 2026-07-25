@@ -16,9 +16,9 @@ const jsonLd = {
   url: siteUrl,
   jobTitle: 'Full-stack Engineer',
   sameAs: [
-    'https://github.com/anomalyco',
-    'https://twitter.com/anomalyco',
-    'https://linkedin.com/in/anomalyco',
+    'https://github.com/indra-182',
+    'https://twitter.com/vwxmz',
+    'https://www.linkedin.com/in/mahadiindra182/',
   ],
 };
 
