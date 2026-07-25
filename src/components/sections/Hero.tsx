@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="animate-fade-up">
         <p
           className="mb-4 text-sm font-bold uppercase tracking-widest"
-          style={{ color: "var(--neo-accent-1)" }}
+          style={{ color: "var(--neo-text-accent)" }}
         >
           Hi, my name is
         </p>

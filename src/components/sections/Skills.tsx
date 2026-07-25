@@ -21,7 +21,7 @@ export default function Skills() {
           <div key={group.category} className="neo-card">
             <h3
               className="mb-4 text-lg font-black uppercase tracking-tight"
-              style={{ color: 'var(--neo-accent-1)' }}
+              style={{ color: 'var(--neo-text-accent)' }}
             >
               {group.category}
             </h3>

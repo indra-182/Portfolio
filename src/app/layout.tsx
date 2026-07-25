@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Indra's Portfolio",
   description: 'Full-stack engineer building things on the web.',
-  icons: { icon: '/logo.svg' },
+  icons: { icon: '/favicon.ico' },
   alternates: { canonical: '/' },
   openGraph: {
     title: "Indra's Portfolio",
