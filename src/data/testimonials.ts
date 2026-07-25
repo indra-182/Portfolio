@@ -17,6 +17,7 @@ export const testimonials: Testimonial[] = [
   {
     name: 'Wahyu Aziz',
     role: 'Backend Engineer',
+    company: 'Indivara Group',
     quote:
       'Working with Indra has been a great experience. He has deep frontend expertise and communicates well across the stack. Highly recommended as a teammate and engineer.',
   },

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { ThemeProvider } from 'next-themes';
+import Script from 'next/script';
+import { ThemeProvider } from '@/lib/theme-provider';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import './globals.css';
@@ -20,11 +21,11 @@ const siteUrl = process.env.SITE_URL || 'https://indra.dev';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'Indra — Portfolio',
-  description: 'Full-stack developer building things on the web.',
+  description: 'Full-stack engineer building things on the web.',
   alternates: { canonical: '/' },
   openGraph: {
     title: 'Indra — Portfolio',
-    description: 'Full-stack developer building things on the web.',
+    description: 'Full-stack engineer building things on the web.',
     type: 'website',
     locale: 'en_US',
     url: '/',
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Indra — Portfolio',
-    description: 'Full-stack developer building things on the web.',
+    description: 'Full-stack engineer building things on the web.',
   },
 };
 
@@ -52,8 +53,13 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
+      <head>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`(function(){var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}document.documentElement.classList.add(t)})()`}
+        </Script>
+      </head>
       <body style={{ background: 'var(--neo-bg)', color: 'var(--neo-text)' }}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider>
           <Navbar />
           <main className="pt-18.25">{children}</main>
           <Footer />

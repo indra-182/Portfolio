@@ -2,7 +2,7 @@ export interface Post {
   slug: string;
   title: string;
   excerpt: string;
-  type: 'article' | 'curation';
+  type: "article" | "curation";
   coverImage?: string;
   date: string;
   category: string;
@@ -18,17 +18,17 @@ export async function fetchLatestPosts(limit = 6): Promise<Post[]> {
 
   try {
     const res = await fetch(
-      `https://blog-seven-sandy-41.vercel.app/api/posts?limit=${limit}`,
+      `https://blog-mahadi-indra.vercel.app/api/posts?limit=${limit}`,
       {
         signal: controller.signal,
         next: { revalidate: 900 },
-      }
+      },
     );
 
     if (!res.ok) return [];
 
     const data = await res.json();
-    return Array.isArray(data) ? data : data.posts ?? [];
+    return Array.isArray(data) ? data : (data.posts ?? []);
   } catch {
     return [];
   } finally {

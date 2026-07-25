@@ -84,12 +84,17 @@
   .neo-tag {
     border: 2px solid #000;
     background: var(--neo-accent-3);
-    color: var(--neo-text);
+    color: #000;
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.75rem;
     padding: 4px 10px;
     display: inline-block;
+  }
+
+  .dark .neo-tag {
+    background: var(--neo-accent-2);
+    color: #FFF;
   }
 
   .neo-section-title {

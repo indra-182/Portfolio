@@ -50,9 +50,7 @@ export const skills: SkillCategory[] = [
   },
   {
     category: 'Testing',
-    items: [
-      { name: 'Playwright', level: 'Proficient' },
-    ],
+    items: [{ name: 'Playwright', level: 'Proficient' }],
   },
   {
     category: 'Backend',

@@ -59,7 +59,7 @@ export default async function BlogSection() {
           <p className="text-sm">
             Check{' '}
             <a
-              href="https://blog-seven-sandy-41.vercel.app"
+              href="https://blog-mahadi-indra.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
               className="font-bold underline"

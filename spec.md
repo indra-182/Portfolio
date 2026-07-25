@@ -8,11 +8,11 @@
 
 ## 0. Ringkasan Eksekutif
 
-Portfolio sebagai consumer dalam ekosistem 2 project. Blog (sudah live di `blog-seven-sandy-41.vercel.app`) sebagai provider konten via `/api/posts`.
+Portfolio sebagai consumer dalam ekosistem 2 project. Blog (sudah live di `blog-mahadi-indra.vercel.app`) sebagai provider konten via `/api/posts`.
 
 Domain: `indra.dev` (nanti atur). Stack: Next.js 16 App Router + TypeScript + Tailwind CSS v4. Style: neobrutalism (konsisten dengan Blog).
 
-Blog Section di portfolio fetch dari `https://blog-seven-sandy-41.vercel.app/api/posts` via ISR (revalidate 15 menit). Saat deploy, Vercel Deploy Hook dari Blog trigger rebuild portfolio.
+Blog Section di portfolio fetch dari `https://blog-mahadi-indra.vercel.app/api/posts` via ISR (revalidate 15 menit). Saat deploy, Vercel Deploy Hook dari Blog trigger rebuild portfolio.
 
 ---
 
@@ -49,8 +49,8 @@ Blog Section di portfolio fetch dari `https://blog-seven-sandy-41.vercel.app/api
 
 ### G. Blog Section (Dinamis — API dari Blog)
 - N post terbaru (judul, excerpt, tanggal, tag, reading time)
-- Fetch dari `GET https://blog-seven-sandy-41.vercel.app/api/posts?limit=6` via ISR
-- Klik card → redirect ke `https://blog-seven-sandy-41.vercel.app/posts/[slug]`
+- Fetch dari `GET https://blog-mahadi-indra.vercel.app/api/posts?limit=6` via ISR
+- Klik card → redirect ke `https://blog-mahadi-indra.vercel.app/posts/[slug]`
 - Fallback UI jika API down: skeleton → pesan graceful
 
 ### H. Contact Section
@@ -90,7 +90,7 @@ User → indra.dev (Portfolio, SSG + ISR)
          │   └── Static data from src/data/*.ts
          │
          ├── Blog Section
-         │   └── ISR fetch → blog-seven-sandy-41.vercel.app/api/posts?limit=6
+         │   └── ISR fetch → blog-mahadi-indra.vercel.app/api/posts?limit=6
          │       └── Fallback: empty state (cache stale sebelumnya)
          │
          ├── Contact Form
@@ -105,7 +105,7 @@ User → indra.dev (Portfolio, SSG + ISR)
 1. User request indra.dev
 2. Next.js check cache ISR untuk section Blog
 3. Cache stale → trigger background revalidation:
-   fetch GET blog-seven-sandy-41.vercel.app/api/posts?limit=6
+   fetch GET blog-mahadi-indra.vercel.app/api/posts?limit=6
 4. Sukses → update cache, next request dapet versi baru
 5. Gagal/timeout → serve cache lama, log error
 6. Build tidak gagal total walau API down
@@ -116,7 +116,7 @@ User → indra.dev (Portfolio, SSG + ISR)
 ## 4. Kontrak API — Blog
 
 ```
-GET https://blog-seven-sandy-41.vercel.app/api/posts?limit=6
+GET https://blog-mahadi-indra.vercel.app/api/posts?limit=6
 
 Response:
 {

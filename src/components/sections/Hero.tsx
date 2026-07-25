@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 const MotionDiv = dynamic(
-  () => import('framer-motion').then((m) => ({ default: m.motion.div })),
-  { ssr: false }
+  () => import("framer-motion").then((m) => ({ default: m.motion.div })),
+  { ssr: false },
 );
 
 export default function Hero() {
@@ -16,11 +16,11 @@ export default function Hero() {
       <MotionDiv
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <p
           className="mb-4 text-sm font-bold uppercase tracking-widest"
-          style={{ color: 'var(--neo-accent-1)' }}
+          style={{ color: "var(--neo-accent-1)" }}
         >
           Hi, my name is
         </p>
@@ -30,7 +30,7 @@ export default function Hero() {
         </h1>
 
         <p className="mt-6 max-w-xl text-lg font-bold uppercase leading-relaxed">
-          Full-stack Developer
+          Full-stack Engineer
         </p>
 
         <p className="neo-prose mt-4 max-w-lg text-sm font-bold opacity-70">
@@ -41,7 +41,11 @@ export default function Hero() {
           <a href="#projects" className="neo-btn">
             View Projects
           </a>
-          <a href="#contact" className="neo-btn" style={{ background: 'var(--neo-bg)' }}>
+          <a
+            href="#contact"
+            className="neo-btn"
+            style={{ background: "var(--neo-bg)" }}
+          >
             Get In Touch
           </a>
         </div>

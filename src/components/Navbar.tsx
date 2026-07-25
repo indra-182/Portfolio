@@ -29,7 +29,7 @@ export default function Navbar() {
         ([entry]) => {
           if (entry.isIntersecting) setActive(id);
         },
-        { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+        { rootMargin: '-40% 0px -55% 0px', threshold: 0 },
       );
 
       observer.observe(el);
@@ -48,7 +48,11 @@ export default function Navbar() {
         boxShadow: '0 3px 0px 0px #000',
       }}
     >
-      <a href="#" className="text-xl font-black uppercase tracking-tight" style={{ color: 'var(--neo-text)' }}>
+      <a
+        href="#"
+        className="text-xl font-black uppercase tracking-tight"
+        style={{ color: 'var(--neo-text)' }}
+      >
         Indra.dev
       </a>
 

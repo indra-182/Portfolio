@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
+import { useState } from "react";
+import Image from "next/image";
 
 interface Project {
   title: string;
@@ -14,53 +14,53 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: 'Petron Corporate Dashboard',
+    title: "Petron Corporate Dashboard",
     description:
-      'Led frontend team building a corporate dashboard from scratch — registration, PIN setup, login, and inter-corporate fund transfer. Built Bulk Top-Up for 10,000 records via CSV/Excel.',
-    tags: ['Next.js', 'React', 'Redux Toolkit', 'TanStack Query', 'MUI'],
-    image: '/projects/petron.jpg',
+      "Led frontend team building a corporate dashboard from scratch — registration, PIN setup, login, and inter-corporate fund transfer. Built Bulk Top-Up for 10,000 records via CSV/Excel.",
+    tags: ["Next.js", "React", "Redux Toolkit", "TanStack Query", "MUI"],
+    image: "/projects/petron.webp",
   },
   {
-    title: 'Maybank Wealth Management',
+    title: "Maybank Wealth Management",
     description:
-      'Developed Unit Trust module end-to-end — Product Setup, Subscription, Redemption, and NAV calculation for complex wealth management operations.',
-    tags: ['React', 'Redux', 'Ant Design', 'Tailwind CSS', 'Playwright'],
-    image: '/projects/maybank.jpg',
+      "Developed Unit Trust module end-to-end — Product Setup, Subscription, Redemption, and NAV calculation for complex wealth management operations.",
+    tags: ["React", "Redux", "Ant Design", "Tailwind CSS", "Playwright"],
+    image: "/projects/maybank.webp",
   },
   {
-    title: 'BCA Wealth Management',
+    title: "BCA Wealth Management",
     description:
-      'Developed Fixed Income module covering Product Setup, Buy, Sell, and Settlement for enterprise-scale investment transactions.',
-    tags: ['React', 'Redux', 'Ant Design', 'Tailwind CSS'],
-    image: '/projects/bca.jpg',
+      "Developed Fixed Income module covering Product Setup, Buy, Sell, and Settlement for enterprise-scale investment transactions.",
+    tags: ["React", "Redux", "Ant Design", "Tailwind CSS"],
+    image: "/projects/bca.webp",
   },
   {
-    title: 'Pegadaian Insurance Claims',
+    title: "Pegadaian Insurance Claims",
     description:
-      'Built insurance claims feature simplifying claim submission and tracking process for users.',
-    tags: ['Vue', 'Tailwind CSS', 'Axios'],
-    image: '/projects/pegadaian.jpg',
+      "Built insurance claims feature simplifying claim submission and tracking process for users.",
+    tags: ["Vue", "Tailwind CSS", "Axios"],
+    image: "/projects/pegadaian.webp",
   },
   {
-    title: 'Dompet Nusantara',
+    title: "Dompet Nusantara",
     description:
-      'Built UI and integrated WebView for payment flow, ensuring smooth transaction experience within partner app.',
-    tags: ['Preact', 'Zustand', 'Tailwind CSS'],
-    image: '/projects/dompet.jpg',
+      "Built UI and integrated WebView for payment flow, ensuring smooth transaction experience within partner app.",
+    tags: ["Preact", "Zustand", "Tailwind CSS"],
+    image: "/projects/dora.webp",
   },
   {
-    title: 'Danamon Mutual Fund Platform',
+    title: "Danamon Mutual Fund Platform",
     description:
-      'Developed Subscription, Redemption, and Switching transaction features for mutual fund platform.',
-    tags: ['Angular', 'Bootstrap'],
-    image: '/projects/danamon.jpg',
+      "Developed Subscription, Redemption, and Switching transaction features for mutual fund platform.",
+    tags: ["Angular", "Bootstrap"],
+    image: "/projects/danamon.webp",
   },
   {
-    title: 'Warehouse Management App',
+    title: "Warehouse Management App",
     description:
-      'Led 4-person team building warehouse and shipment management application from concept to implementation. Designed ERD.',
-    tags: ['Java', 'Spring Boot', 'PostgreSQL', 'Angular'],
-    image: '/projects/warehouse.jpg',
+      "Led 4-person team building warehouse and shipment management application from concept to implementation. Designed ERD.",
+    tags: ["Java", "Spring Boot", "PostgreSQL", "Angular"],
+    image: "/projects/warehouse.webp",
   },
 ];
 
@@ -88,10 +88,13 @@ export default function Projects() {
           onClick={() => setActiveTag(null)}
           className="neo-tag text-xs font-bold uppercase"
           style={{
-            background: activeTag === null ? 'var(--neo-accent-1)' : 'var(--neo-accent-3)',
-            cursor: 'pointer',
-            border: '2px solid #000',
-            color: activeTag === null ? '#FFF' : '#000',
+            background:
+              activeTag === null
+                ? "var(--neo-accent-1)"
+                : "var(--neo-accent-3)",
+            cursor: "pointer",
+            border: "2px solid #000",
+            color: activeTag === null ? "#FFF" : "#000",
           }}
         >
           All
@@ -102,10 +105,13 @@ export default function Projects() {
             onClick={() => setActiveTag(tag)}
             className="neo-tag text-xs font-bold uppercase"
             style={{
-              background: activeTag === tag ? 'var(--neo-accent-1)' : 'var(--neo-accent-3)',
-              cursor: 'pointer',
-              border: '2px solid #000',
-              color: activeTag === tag ? '#FFF' : '#000',
+              background:
+                activeTag === tag
+                  ? "var(--neo-accent-1)"
+                  : "var(--neo-accent-3)",
+              cursor: "pointer",
+              border: "2px solid #000",
+              color: activeTag === tag ? "#FFF" : "#000",
             }}
           >
             {tag}
@@ -147,7 +153,7 @@ export default function Projects() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="neo-btn text-sm"
-                  style={{ padding: '8px 16px' }}
+                  style={{ padding: "8px 16px" }}
                 >
                   Demo
                 </a>
@@ -158,7 +164,7 @@ export default function Projects() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="neo-btn text-sm"
-                  style={{ padding: '8px 16px', background: 'var(--neo-bg)' }}
+                  style={{ padding: "8px 16px", background: "var(--neo-bg)" }}
                 >
                   Repo
                 </a>

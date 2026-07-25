@@ -11,20 +11,18 @@ export default function About() {
 
       <div className="neo-card mb-8 max-w-3xl">
         <p className="neo-prose">
-          Frontend Engineer with 5+ years helping banks, fintech companies, and enterprises deliver
-          better digital experiences. I care about the details that make an interface feel effortless
-          — whether it is a high-volume transaction flow, a data-heavy dashboard, or a complex
-          financial workflow that needs to feel simple for the people who use it every day.
+          Frontend Engineer with 5+ years shipping digital products for banks, fintech, and
+          enterprises. I work at Indivara Group across clients like BCA, Bank Danamon, BRI,
+          Pegadaian, and Petron Philippines.
         </p>
         <p className="neo-prose">
-          I spent most of my career at Indivara Group, working across client projects including BCA,
-          Bank Danamon, BRI, Pegadaian, and Petron Philippines. My work ranges from building modular
-          UI architectures and high-volume transaction flows to leading frontend delivery as the sole
-          or lead engineer on cross-functional teams.
+          My day to day is building interfaces that handle high-volume transactions, complex
+          financial workflows, and data-heavy dashboards. I have led frontend delivery as the
+          sole or lead engineer on cross-functional teams.
         </p>
         <p className="neo-prose">
-          Beyond frontend, I have experience across the stack — Java, Spring Boot, PostgreSQL — and
-          I am currently exploring AI-powered tooling to automate the boring parts of development.
+          I also know my way around the backend (Java, Spring Boot, PostgreSQL) and
+          currently exploring AI tooling to automate the boring parts of development.
         </p>
       </div>
 
@@ -47,7 +45,13 @@ export default function About() {
       </div>
 
       <div className="mt-8">
-        <a href="/cv.pdf" className="neo-btn" style={{ background: 'var(--neo-bg)' }}>
+        <a
+          href="https://rxresu.me/mahadiindra2/mahadi-indra-cv"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="neo-btn"
+          style={{ background: 'var(--neo-bg)' }}
+        >
           Download CV
         </a>
       </div>
