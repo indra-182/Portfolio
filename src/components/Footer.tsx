@@ -3,9 +3,9 @@ import { FaXTwitter } from 'react-icons/fa6';
 import { FaLinkedinIn } from 'react-icons/fa';
 
 const socialLinks = [
-  { href: 'https://github.com/anomalyco', icon: FaGithub, label: 'GitHub' },
-  { href: 'https://twitter.com/anomalyco', icon: FaXTwitter, label: 'Twitter' },
-  { href: 'https://linkedin.com/in/anomalyco', icon: FaLinkedinIn, label: 'LinkedIn' },
+  { href: 'https://github.com/indra-182', icon: FaGithub, label: 'GitHub' },
+  { href: 'https://twitter.com/vwxmz', icon: FaXTwitter, label: 'Twitter' },
+  { href: 'https://www.linkedin.com/in/mahadiindra182/', icon: FaLinkedinIn, label: 'LinkedIn' },
 ];
 
 export default function Footer() {
