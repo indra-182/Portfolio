@@ -19,46 +19,55 @@ Blog Section di portfolio fetch dari `https://blog-mahadi-indra.vercel.app/api/p
 ## 1. Feature List
 
 ### A. Hero Section
+
 - Nama, headline (role + value proposition)
 - CTA ganda: "Lihat Proyek" & "Hubungi Saya"
 - Animasi ringan (opsional, lazy-load, jangan block LCP)
 - Avatar/foto (next/image, WebP/AVIF)
 
 ### B. About Section
+
 - Narasi singkat 3-4 paragraf
 - Highlight angka: years, projects, tech stack
 - Link download CV (PDF statis)
 
 ### C. Skills Section
+
 - Kategori: Languages, Frameworks, Tools, Cloud/DevOps, AI/Agentic
 - Qualitative level: Familiar / Proficient / Advanced
 - Data: local `src/data/skills.ts`
 
 ### D. Experience Section
+
 - Timeline vertikal: perusahaan, role, periode, bullet result-oriented
 - Data: `src/data/experience.ts`
 
 ### E. Projects Section
+
 - Grid card: thumbnail, judul, deskripsi, tech tags, link demo & repo
 - Filter by tag (client-side, no reload)
 - Detail expand (modal/drawer) atau halaman `/projects/[slug]`
 
 ### F. Testimonials Section
+
 - Carousel/grid quote: nama, role, perusahaan, foto, kutipan
 - Data: local JSON statis
 
 ### G. Blog Section (Dinamis — API dari Blog)
+
 - N post terbaru (judul, excerpt, tanggal, tag, reading time)
 - Fetch dari `GET https://blog-mahadi-indra.vercel.app/api/posts?limit=6` via ISR
 - Klik card → redirect ke `https://blog-mahadi-indra.vercel.app/posts/[slug]`
 - Fallback UI jika API down: skeleton → pesan graceful
 
 ### H. Contact Section
+
 - Form: nama, email, pesan
 - Validasi client + server (zod)
 - Kirim via Resend / SendGrid — atau fallback link langsung email/LinkedIn
 
 ### I. Cross-cutting
+
 - Dark/Light mode (next-themes, konsisten dengan Blog)
 - Responsive mobile-first
 - Neobrutalism styling
@@ -69,15 +78,15 @@ Blog Section di portfolio fetch dari `https://blog-mahadi-indra.vercel.app/api/p
 
 ## 2. User Stories
 
-| ID | Sebagai | Saya ingin | Agar |
-|----|---------|-----------|------|
-| P1-01 | Recruiter/HR | melihat ringkasan skill & pengalaman <10 detik scroll | cepat nilai kecocokan |
-| P1-02 | Hiring manager | buka detail proyek dengan link demo & repo | nilai kualitas kerja |
-| P1-03 | Calon klien | baca artikel blog terbaru tanpa keluar portfolio | nilai kedalaman expertise |
-| P1-04 | Pengunjung | ganti dark/light mode | nyaman baca sesuai preferensi |
-| P1-05 | Pengunjung mobile | akses semua section layout rapi | pengalaman setara desktop |
-| P1-06 | Recruiter | kirim pesan lewat form contact | hubungi tanpa app email |
-| P1-07 | Pengunjung | halaman tetap cepat walau API blog down | ga liat blank page |
+| ID    | Sebagai           | Saya ingin                                            | Agar                          |
+| ----- | ----------------- | ----------------------------------------------------- | ----------------------------- |
+| P1-01 | Recruiter/HR      | melihat ringkasan skill & pengalaman <10 detik scroll | cepat nilai kecocokan         |
+| P1-02 | Hiring manager    | buka detail proyek dengan link demo & repo            | nilai kualitas kerja          |
+| P1-03 | Calon klien       | baca artikel blog terbaru tanpa keluar portfolio      | nilai kedalaman expertise     |
+| P1-04 | Pengunjung        | ganti dark/light mode                                 | nyaman baca sesuai preferensi |
+| P1-05 | Pengunjung mobile | akses semua section layout rapi                       | pengalaman setara desktop     |
+| P1-06 | Recruiter         | kirim pesan lewat form contact                        | hubungi tanpa app email       |
+| P1-07 | Pengunjung        | halaman tetap cepat walau API blog down               | ga liat blank page            |
 
 ---
 
@@ -141,18 +150,18 @@ Response:
 
 ## 5. Tech Stack
 
-| Layer | Pilihan | Rationale |
-|-------|---------|-----------|
-| Framework | Next.js 16 App Router | ISR, RSC, image opt, 1-klik Vercel |
-| Bahasa | TypeScript | Type-safety buat kontrak API Blog |
-| Styling | Tailwind CSS v4 + neo classes | Neobrutalism, purge unused CSS |
-| Animasi | Framer Motion (lazy-load) | Micro-interaction tanpa sacrifice perf |
-| Icon | Lucide React | Ringan, tree-shakeable |
-| Form | React Hook Form + Zod | Type-safe validasi |
-| Email | Resend | Native Vercel |
-| Deployment | Vercel | ISR native, edge CDN |
-| Analytics | Vercel Analytics | Zero-config |
-| Linting | ESLint 9 + Prettier | Konsisten |
+| Layer      | Pilihan                       | Rationale                              |
+| ---------- | ----------------------------- | -------------------------------------- |
+| Framework  | Next.js 16 App Router         | ISR, RSC, image opt, 1-klik Vercel     |
+| Bahasa     | TypeScript                    | Type-safety buat kontrak API Blog      |
+| Styling    | Tailwind CSS v4 + neo classes | Neobrutalism, purge unused CSS         |
+| Animasi    | Framer Motion (lazy-load)     | Micro-interaction tanpa sacrifice perf |
+| Icon       | Lucide React                  | Ringan, tree-shakeable                 |
+| Form       | React Hook Form + Zod         | Type-safe validasi                     |
+| Email      | Resend                        | Native Vercel                          |
+| Deployment | Vercel                        | ISR native, edge CDN                   |
+| Analytics  | Vercel Analytics              | Zero-config                            |
+| Linting    | ESLint 9 + Prettier           | Konsisten                              |
 
 ---
 
@@ -161,43 +170,42 @@ Response:
 ```markdown
 src/
 ├── app/
-│   ├── layout.tsx              (ThemeProvider, Navbar, Footer, Analytics)
-│   ├── page.tsx                (compose semua section)
-│   └── api/contact/route.ts    (POST form handler)
+│ ├── layout.tsx (ThemeProvider, Navbar, Footer, Analytics)
+│ ├── page.tsx (compose semua section)
+│ └── api/contact/route.ts (POST form handler)
 ├── components/
-│   ├── Navbar.tsx              (fixed top, smooth-scroll links)
-│   ├── ThemeToggle.tsx         (sun/moon, next-themes)
-│   ├── Footer.tsx              (copyright, social links)
-│   └── sections/
-│       ├── Hero.tsx
-│       ├── About.tsx
-│       ├── Skills.tsx
-│       ├── Experience.tsx
-│       ├── Projects.tsx
-│       ├── Testimonials.tsx
-│       ├── BlogSection.tsx     (Server Component — fetch API)
-│       │   ├── BlogPostCard.tsx
-│       │   └── BlogSectionSkeleton.tsx
-│       └── Contact.tsx
+│ ├── Navbar.tsx (fixed top, smooth-scroll links)
+│ ├── ThemeToggle.tsx (sun/moon, next-themes)
+│ ├── Footer.tsx (copyright, social links)
+│ └── sections/
+│ ├── Hero.tsx
+│ ├── About.tsx
+│ ├── Skills.tsx
+│ ├── Experience.tsx
+│ ├── Projects.tsx
+│ ├── Testimonials.tsx
+│ ├── BlogSection.tsx (Server Component — fetch API)
+│ │ ├── BlogPostCard.tsx
+│ └── Contact.tsx
 ├── data/
-│   ├── skills.ts
-│   ├── experience.ts
-│   └── testimonials.ts
+│ ├── skills.ts
+│ ├── experience.ts
+│ └── testimonials.ts
 ├── lib/
-│   └── api/blog.ts             (fetchLatestPosts, typed)
+│ └── api/blog.ts (fetchLatestPosts, typed)
 └── styles/
-    └── tokens.css              (neo CSS variables)
+└── tokens.css (neo CSS variables)
 ```
 
 ---
 
 ## 7. Route Design
 
-| Route | Deskripsi | Rendering |
-|-------|-----------|-----------|
-| `/` | Homepage — semua section scroll | SSG |
-| `/api/contact` | POST form contact | Server (dynamic) |
-| `/#blog` | Anchor ke Blog Section | — |
+| Route          | Deskripsi                       | Rendering        |
+| -------------- | ------------------------------- | ---------------- |
+| `/`            | Homepage — semua section scroll | SSG              |
+| `/api/contact` | POST form contact               | Server (dynamic) |
+| `/#blog`       | Anchor ke Blog Section          | —                |
 
 ---
 
@@ -229,23 +237,24 @@ src/
 
 ## 10. Performance Budget
 
-| Metrik | Target |
-|--------|--------|
-| LCP | < 2.0s |
-| CLS | < 0.05 |
-| TTFB | < 200ms (Vercel edge) |
-| Total JS | < 150KB gzip |
-| Lighthouse | 95+ all categories |
+| Metrik     | Target                |
+| ---------- | --------------------- |
+| LCP        | < 2.0s                |
+| CLS        | < 0.05                |
+| TTFB       | < 200ms (Vercel edge) |
+| Total JS   | < 150KB gzip          |
+| Lighthouse | 95+ all categories    |
 
 Khusus Blog Section:
+
 - Timeout fetch API: 3 detik. Gagal → serve cache/fallback. Build tetap lanjut.
 
 ---
 
 ## 11. Milestone
 
-| Fase | Scope | Agent |
-|------|-------|-------|
-| **Phase 1 — Setup** | Init project, tokens.css, globals.css, Navbar, Footer, Theme, Blog section skeleton (fetch ISR) | Hermes → OpenCode |
-| **Phase 2 — Content Sections** | Hero, About, Skills, Experience, Projects, Testimonials, Contact | OpenCode |
-| **Phase 3 — Polish + Deploy** | SEO, performance, deploy Vercel, domain | OpenCode |
+| Fase                           | Scope                                                                                           | Agent             |
+| ------------------------------ | ----------------------------------------------------------------------------------------------- | ----------------- |
+| **Phase 1 — Setup**            | Init project, tokens.css, globals.css, Navbar, Footer, Theme, Blog section skeleton (fetch ISR) | Hermes → OpenCode |
+| **Phase 2 — Content Sections** | Hero, About, Skills, Experience, Projects, Testimonials, Contact                                | OpenCode          |
+| **Phase 3 — Polish + Deploy**  | SEO, performance, deploy Vercel, domain                                                         | OpenCode          |

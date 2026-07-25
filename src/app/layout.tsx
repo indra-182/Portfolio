@@ -20,11 +20,12 @@ const siteUrl = process.env.SITE_URL || 'https://indra.dev';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Indra — Portfolio',
+  title: "Indra's Portfolio",
   description: 'Full-stack engineer building things on the web.',
+  icons: { icon: '/logo.svg' },
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Indra — Portfolio',
+    title: "Indra's Portfolio",
     description: 'Full-stack engineer building things on the web.',
     type: 'website',
     locale: 'en_US',
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Indra — Portfolio',
+    title: "Indra's Portfolio",
     description: 'Full-stack engineer building things on the web.',
   },
 };

@@ -28,7 +28,7 @@ export async function fetchLatestPosts(limit = 6): Promise<Post[]> {
     if (!res.ok) return [];
 
     const data = await res.json();
-    return Array.isArray(data) ? data : (data.posts ?? []);
+    return data.data ?? (data.posts ?? []);
   } catch {
     return [];
   } finally {

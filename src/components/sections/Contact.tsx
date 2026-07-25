@@ -41,21 +41,10 @@ export default function Contact() {
 
     setStatus('sending');
 
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(result.data),
-      });
+    const mailto = `mailto:mahadiindra2@gmail.com?subject=Contact from ${encodeURIComponent(form.name)}&body=${encodeURIComponent(form.message)}%0A%0AFrom: ${encodeURIComponent(form.email)}`;
+    window.location.href = mailto;
 
-      if (!res.ok) throw new Error('Failed');
-
-      setStatus('success');
-      setForm({ name: '', email: '', message: '' });
-    } catch {
-      const mailto = `mailto:mahadiindra2@gmail.com?subject=Contact from ${encodeURIComponent(form.name)}&body=${encodeURIComponent(form.message)}%0A%0AFrom: ${encodeURIComponent(form.email)}`;
-      window.location.href = mailto;
-    }
+    setForm({ name: '', email: '', message: '' });
   }
 
   return (
