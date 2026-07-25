@@ -28,8 +28,8 @@
   .dark {
     --neo-bg: #1A1A1A;
     --neo-text: #FFFDF7;
-    --neo-accent-1: #FF6B35;
-    --neo-accent-2: #1E6B9E;
+    --neo-accent-1: #C14A1E;
+    --neo-accent-2: #3B8FD6;
     --neo-accent-3: #FFD700;
   }
 
@@ -72,10 +72,6 @@
   .neo-btn:active {
     box-shadow: none;
     transform: translate(5px, 5px);
-  }
-
-  .dark .neo-btn {
-    color: #000;
   }
 
   .neo-card {

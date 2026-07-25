@@ -26,7 +26,7 @@ export default function Experience() {
                 <div className="mb-2 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
                   <h3 className="text-xl font-black uppercase tracking-tight">{exp.role}</h3>
                   <span
-                    className="text-xs font-bold uppercase opacity-60"
+                    className="text-xs font-bold uppercase"
                     style={{ color: 'var(--neo-accent-2)' }}
                   >
                     {exp.period}

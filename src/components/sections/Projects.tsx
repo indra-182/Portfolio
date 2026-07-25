@@ -87,31 +87,31 @@ export default function Projects() {
         <button
           onClick={() => setActiveTag(null)}
           className="neo-tag text-xs font-bold uppercase"
-          style={{
-            background:
-              activeTag === null
-                ? "var(--neo-accent-1)"
-                : "var(--neo-accent-3)",
-            cursor: "pointer",
-            border: "2px solid #000",
-            color: "#000",
-          }}
-        >
-          All
-        </button>
-        {tags.map((tag) => (
-          <button
-            key={tag}
-            onClick={() => setActiveTag(tag)}
-            className="neo-tag text-xs font-bold uppercase"
-            style={{
-              background:
-                activeTag === tag
-                  ? "var(--neo-accent-1)"
-                  : "var(--neo-accent-3)",
-              cursor: "pointer",
-              border: "2px solid #000",
-              color: "#000",
+           style={{
+             background:
+               activeTag === null
+                 ? "var(--neo-accent-1)"
+                 : "var(--neo-accent-3)",
+             cursor: "pointer",
+             border: "2px solid #000",
+             color: activeTag === null ? "var(--neo-text)" : "#000",
+           }}
+         >
+           All
+         </button>
+         {tags.map((tag) => (
+           <button
+             key={tag}
+             onClick={() => setActiveTag(tag)}
+             className="neo-tag text-xs font-bold uppercase"
+             style={{
+               background:
+                 activeTag === tag
+                   ? "var(--neo-accent-1)"
+                   : "var(--neo-accent-3)",
+               cursor: "pointer",
+               border: "2px solid #000",
+               color: activeTag === tag ? "var(--neo-text)" : "#000",
             }}
           >
             {tag}
