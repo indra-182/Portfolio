@@ -1,10 +1,10 @@
-import { NextResponse } from 'next/server';
-import { z } from 'zod';
+import { NextResponse } from "next/server";
+import { z } from "zod";
 
 const contactSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  email: z.string().email('Invalid email'),
-  message: z.string().min(1, 'Message is required'),
+  name: z.string().min(1, "Name is required"),
+  email: z.email("Invalid email"),
+  message: z.string().min(1, "Message is required"),
 });
 
 export async function POST(request: Request) {
@@ -15,15 +15,15 @@ export async function POST(request: Request) {
     if (!parsed.success) {
       return NextResponse.json(
         { success: false, errors: parsed.error.issues },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json(
-      { success: false, error: 'Invalid request body' },
-      { status: 400 }
+      { success: false, error: "Invalid request body" },
+      { status: 400 },
     );
   }
 }
