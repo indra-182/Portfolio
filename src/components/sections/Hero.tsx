@@ -1,23 +1,10 @@
-"use client";
-
-import dynamic from "next/dynamic";
-
-const MotionDiv = dynamic(
-  () => import("framer-motion").then((m) => ({ default: m.motion.div })),
-  { ssr: false },
-);
-
 export default function Hero() {
   return (
     <section
       id="hero"
       className="mx-auto flex min-h-[80vh] max-w-6xl flex-col items-start justify-center px-6"
     >
-      <MotionDiv
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
+      <div className="animate-fade-up">
         <p
           className="mb-4 text-sm font-bold uppercase tracking-widest"
           style={{ color: "var(--neo-accent-1)" }}
@@ -49,7 +36,7 @@ export default function Hero() {
             Get In Touch
           </a>
         </div>
-      </MotionDiv>
+      </div>
     </section>
   );
 }

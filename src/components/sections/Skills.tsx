@@ -33,7 +33,7 @@ export default function Skills() {
                     className="neo-tag"
                     style={{
                       background: levelColor(skill.level),
-                      color: skill.level === 'Advanced' ? '#FFF' : '#000',
+                      color: skill.level === 'Proficient' ? '#FFF' : '#000',
                     }}
                   >
                     {skill.name}

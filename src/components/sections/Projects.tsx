@@ -94,7 +94,7 @@ export default function Projects() {
                 : "var(--neo-accent-3)",
             cursor: "pointer",
             border: "2px solid #000",
-            color: activeTag === null ? "#FFF" : "#000",
+            color: "#000",
           }}
         >
           All
@@ -111,7 +111,7 @@ export default function Projects() {
                   : "var(--neo-accent-3)",
               cursor: "pointer",
               border: "2px solid #000",
-              color: activeTag === tag ? "#FFF" : "#000",
+              color: "#000",
             }}
           >
             {tag}
