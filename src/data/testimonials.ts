@@ -1,34 +1,30 @@
 export interface Testimonial {
   name: string;
   role: string;
-  company: string;
+  company?: string;
   photo?: string;
   quote: string;
 }
 
 export const testimonials: Testimonial[] = [
   {
-    name: 'Alex Rivera',
-    role: 'CTO',
-    company: 'TechCorp',
-    photo: '/avatars/alex.jpg',
+    name: 'Frisko Mayufid',
+    role: 'Senior Frontend Engineer',
+    company: 'Indivara Group',
     quote:
-      'Indra is the kind of engineer who makes the whole team better. His code is clean, his architecture decisions are well-reasoned, and he communicates complex ideas with clarity.',
+      'Indra is a highly recommended engineer with strong technical skills and a collaborative mindset. He consistently delivers quality work across complex financial projects and is someone you can always rely on.',
   },
   {
-    name: 'Sarah Chen',
-    role: 'Product Lead',
-    company: 'StartupXYZ',
-    photo: '/avatars/sarah.jpg',
+    name: 'Wahyu Aziz',
+    role: 'Backend Engineer',
     quote:
-      'Working with Indra felt like cheating. He delivered features faster than anyone I have worked with, without once cutting corners on quality.',
+      'Working with Indra has been a great experience. He has deep frontend expertise and communicates well across the stack. Highly recommended as a teammate and engineer.',
   },
   {
-    name: 'Marcus Johnson',
-    role: 'Engineering Manager',
-    company: 'WebAgency',
-    photo: '/avatars/marcus.jpg',
+    name: 'Gibran',
+    role: 'Computer Science Student',
+    company: 'Indraprasta PGRI University',
     quote:
-      'Indra has a rare combination of deep technical skill and genuine curiosity. He does not just solve problems — he finds the right problems to solve.',
+      'Indra helped me with my thesis project using Java. He explained everything clearly and made sure I understood the concepts. Great mentor and teacher.',
   },
 ];

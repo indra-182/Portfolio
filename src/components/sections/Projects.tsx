@@ -14,34 +14,53 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: 'E-Commerce Platform',
-    description: 'Full-featured online store with cart, checkout, and admin dashboard.',
-    tags: ['Next.js', 'TypeScript', 'Stripe', 'Prisma'],
-    image: '/projects/ecommerce.jpg',
-    demoUrl: 'https://example.com',
-    repoUrl: 'https://github.com/example/ecommerce',
+    title: 'Petron Corporate Dashboard',
+    description:
+      'Led frontend team building a corporate dashboard from scratch — registration, PIN setup, login, and inter-corporate fund transfer. Built Bulk Top-Up for 10,000 records via CSV/Excel.',
+    tags: ['Next.js', 'React', 'Redux Toolkit', 'TanStack Query', 'MUI'],
+    image: '/projects/petron.jpg',
   },
   {
-    title: 'Real-time Chat App',
-    description: 'WebSocket-powered messaging app with rooms, typing indicators, and file sharing.',
-    tags: ['React', 'Socket.io', 'Node.js', 'Redis'],
-    image: '/projects/chat.jpg',
-    demoUrl: 'https://example.com',
-    repoUrl: 'https://github.com/example/chat',
+    title: 'Maybank Wealth Management',
+    description:
+      'Developed Unit Trust module end-to-end — Product Setup, Subscription, Redemption, and NAV calculation for complex wealth management operations.',
+    tags: ['React', 'Redux', 'Ant Design', 'Tailwind CSS', 'Playwright'],
+    image: '/projects/maybank.jpg',
   },
   {
-    title: 'AI Content Generator',
-    description: 'LLM-powered tool that generates blog posts, social copy, and marketing text.',
-    tags: ['OpenAI', 'Next.js', 'LangChain', 'PostgreSQL'],
-    image: '/projects/ai.jpg',
-    demoUrl: 'https://example.com',
+    title: 'BCA Wealth Management',
+    description:
+      'Developed Fixed Income module covering Product Setup, Buy, Sell, and Settlement for enterprise-scale investment transactions.',
+    tags: ['React', 'Redux', 'Ant Design', 'Tailwind CSS'],
+    image: '/projects/bca.jpg',
   },
   {
-    title: 'DevOps Dashboard',
-    description: 'Monitor deployments, server health, and CI/CD pipeline status in one place.',
-    tags: ['React', 'D3.js', 'Docker', 'Go'],
-    image: '/projects/devops.jpg',
-    repoUrl: 'https://github.com/example/devops',
+    title: 'Pegadaian Insurance Claims',
+    description:
+      'Built insurance claims feature simplifying claim submission and tracking process for users.',
+    tags: ['Vue', 'Tailwind CSS', 'Axios'],
+    image: '/projects/pegadaian.jpg',
+  },
+  {
+    title: 'Dompet Nusantara',
+    description:
+      'Built UI and integrated WebView for payment flow, ensuring smooth transaction experience within partner app.',
+    tags: ['Preact', 'Zustand', 'Tailwind CSS'],
+    image: '/projects/dompet.jpg',
+  },
+  {
+    title: 'Danamon Mutual Fund Platform',
+    description:
+      'Developed Subscription, Redemption, and Switching transaction features for mutual fund platform.',
+    tags: ['Angular', 'Bootstrap'],
+    image: '/projects/danamon.jpg',
+  },
+  {
+    title: 'Warehouse Management App',
+    description:
+      'Led 4-person team building warehouse and shipment management application from concept to implementation. Designed ERD.',
+    tags: ['Java', 'Spring Boot', 'PostgreSQL', 'Angular'],
+    image: '/projects/warehouse.jpg',
   },
 ];
 

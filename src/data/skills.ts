@@ -10,49 +10,56 @@ export interface SkillCategory {
 
 export const skills: SkillCategory[] = [
   {
-    category: 'Languages',
+    category: 'Frameworks & Libraries',
     items: [
-      { name: 'TypeScript', level: 'Advanced' },
-      { name: 'JavaScript', level: 'Advanced' },
-      { name: 'Python', level: 'Proficient' },
-      { name: 'Go', level: 'Familiar' },
-      { name: 'SQL', level: 'Proficient' },
+      { name: 'React.js', level: 'Advanced' },
+      { name: 'Next.js', level: 'Advanced' },
+      { name: 'Angular', level: 'Proficient' },
+      { name: 'Vue', level: 'Proficient' },
+      { name: 'TanStack Query', level: 'Advanced' },
+      { name: 'Axios', level: 'Advanced' },
     ],
   },
   {
-    category: 'Frameworks',
+    category: 'State Management',
     items: [
-      { name: 'Next.js', level: 'Advanced' },
-      { name: 'React', level: 'Advanced' },
+      { name: 'Redux', level: 'Advanced' },
+      { name: 'Zustand', level: 'Proficient' },
+    ],
+  },
+  {
+    category: 'Styling',
+    items: [
       { name: 'Tailwind CSS', level: 'Advanced' },
-      { name: 'Node.js', level: 'Proficient' },
-      { name: 'Express', level: 'Proficient' },
+      { name: 'ANT Design', level: 'Advanced' },
+      { name: 'Shadcn UI', level: 'Proficient' },
+      { name: 'Bootstrap', level: 'Proficient' },
+      { name: 'MUI', level: 'Proficient' },
     ],
   },
   {
     category: 'Tools',
     items: [
       { name: 'Git', level: 'Advanced' },
-      { name: 'VS Code', level: 'Advanced' },
-      { name: 'Docker', level: 'Proficient' },
-      { name: 'Figma', level: 'Familiar' },
+      { name: 'NPM', level: 'Advanced' },
+      { name: 'Yarn', level: 'Proficient' },
+      { name: 'Bun', level: 'Proficient' },
+      { name: 'Postman', level: 'Advanced' },
+      { name: 'JIRA', level: 'Proficient' },
     ],
   },
   {
-    category: 'Cloud / DevOps',
+    category: 'Testing',
     items: [
-      { name: 'Vercel', level: 'Advanced' },
-      { name: 'AWS', level: 'Familiar' },
-      { name: 'CI/CD', level: 'Proficient' },
-      { name: 'Linux', level: 'Proficient' },
+      { name: 'Playwright', level: 'Proficient' },
     ],
   },
   {
-    category: 'AI / Agentic',
+    category: 'Backend',
     items: [
-      { name: 'LangChain', level: 'Proficient' },
-      { name: 'OpenAI API', level: 'Proficient' },
-      { name: 'Vector DBs', level: 'Familiar' },
+      { name: 'Java', level: 'Proficient' },
+      { name: 'Spring Boot', level: 'Proficient' },
+      { name: 'PostgreSQL', level: 'Proficient' },
     ],
   },
 ];

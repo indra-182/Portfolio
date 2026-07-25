@@ -21,7 +21,8 @@ export default function Testimonials() {
               <div>
                 <p className="text-sm font-black uppercase leading-tight">{t.name}</p>
                 <p className="text-[10px] font-bold uppercase opacity-60">
-                  {t.role}, {t.company}
+                  {t.role}
+                  {t.company ? `, ${t.company}` : ''}
                 </p>
               </div>
             </div>

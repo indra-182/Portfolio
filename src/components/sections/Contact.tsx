@@ -53,7 +53,8 @@ export default function Contact() {
       setStatus('success');
       setForm({ name: '', email: '', message: '' });
     } catch {
-      setStatus('error');
+      const mailto = `mailto:mahadiindra2@gmail.com?subject=Contact from ${encodeURIComponent(form.name)}&body=${encodeURIComponent(form.message)}%0A%0AFrom: ${encodeURIComponent(form.email)}`;
+      window.location.href = mailto;
     }
   }
 

@@ -7,33 +7,24 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    company: 'TechCorp',
-    role: 'Senior Frontend Engineer',
-    period: '2023 — Present',
+    company: 'Indivara Group',
+    role: 'Frontend Developer',
+    period: 'Aug 2021 — Present',
     achievements: [
-      'Led migration from CRA to Next.js 14, improving Lighthouse score by 40 points.',
-      'Built component library used across 4 product teams.',
-      'Reduced bundle size by 60% via code splitting and lazy loading.',
+      'Petron Philippines (2025-2026): Led frontend team building Corporate Dashboard from scratch — registration, PIN setup, login, inter-corporate fund transfer. Built Bulk Top-Up feature handling 10,000 transaction records via CSV/Excel.',
+      'Avantrade Maybank — Wealth Management (2026-Present): Developed Unit Trust module end-to-end — Product Setup, Subscription, Redemption, NAV calculation. Built Playwright automation tests.',
+      'Pegadaian Asuransi Service (2024-2025): Built insurance claims feature simplifying claim submission and tracking.',
+      'Avantrade BCA — Wealth Management (2023-2024): Developed Fixed Income module — Product Setup, Buy, Sell, Settlement.',
+      'Mitra Artha Pembayaran (2023): Built UI + WebView for Dompet Nusantara payment flow.',
+      'Bank Danamon (2022-2023): Developed Subscription, Redemption, Switching features for mutual fund platform.',
+      'Maintenance Service (2022): Bug fixes and system maintenance for BRI and PNM — Java, Spring Boot, PostgreSQL.',
+      'Java Development Training (2021-2022): Led 4-person team building warehouse & shipment management app. Designed ERD.',
     ],
   },
   {
-    company: 'StartupXYZ',
-    role: 'Full-stack Developer',
-    period: '2021 — 2023',
-    achievements: [
-      'Shipped MVP in 6 weeks using Next.js + Supabase, securing first 100 paying customers.',
-      'Designed and implemented real-time collaboration features with WebSockets.',
-      'Wrote integration tests achieving 90% coverage across critical user flows.',
-    ],
-  },
-  {
-    company: 'WebAgency',
-    role: 'Junior Developer',
-    period: '2020 — 2021',
-    achievements: [
-      'Delivered 12+ client projects on time with React and Tailwind.',
-      'Set up CI/CD pipelines reducing deployment time from hours to minutes.',
-      'Mentored 3 interns through their first production deployments.',
-    ],
+    company: 'Indraprasta PGRI University',
+    role: 'Informatics Engineering',
+    period: 'GPA 3.3 / 4.0',
+    achievements: [],
   },
 ];

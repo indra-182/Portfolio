@@ -1,8 +1,8 @@
 export default function About() {
   const stats = [
     { label: 'Years Experience', value: '5+' },
-    { label: 'Projects Delivered', value: '30+' },
-    { label: 'Technologies Used', value: '20+' },
+    { label: 'Client Projects', value: '10+' },
+    { label: 'Technologies', value: '15+' },
   ];
 
   return (
@@ -11,18 +11,20 @@ export default function About() {
 
       <div className="neo-card mb-8 max-w-3xl">
         <p className="neo-prose">
-          I am a full-stack developer who enjoys building things for the web. My journey started
-          with curiosity about how websites work, and grew into a career crafting digital
-          experiences that are fast, accessible, and enjoyable to use.
+          Frontend Engineer with 5+ years helping banks, fintech companies, and enterprises deliver
+          better digital experiences. I care about the details that make an interface feel effortless
+          — whether it is a high-volume transaction flow, a data-heavy dashboard, or a complex
+          financial workflow that needs to feel simple for the people who use it every day.
         </p>
         <p className="neo-prose">
-          I specialize in React and TypeScript, with a focus on performance and user experience. I
-          believe the best code is code that ships — I value pragmatism over perfection and clean
-          delivery over over-engineering.
+          I spent most of my career at Indivara Group, working across client projects including BCA,
+          Bank Danamon, BRI, Pegadaian, and Petron Philippines. My work ranges from building modular
+          UI architectures and high-volume transaction flows to leading frontend delivery as the sole
+          or lead engineer on cross-functional teams.
         </p>
         <p className="neo-prose">
-          Beyond the frontend, I work across the stack: designing APIs, managing infrastructure, and
-          exploring AI-powered tooling to automate the boring parts of development.
+          Beyond frontend, I have experience across the stack — Java, Spring Boot, PostgreSQL — and
+          I am currently exploring AI-powered tooling to automate the boring parts of development.
         </p>
       </div>
 
