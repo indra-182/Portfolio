@@ -1,0 +1,21 @@
+:root {
+  --neo-bg: #FFFDF7;
+  --neo-text: #1A1A1A;
+  --neo-border: #000000;
+  --neo-accent-1: #FF6B35;
+  --neo-accent-2: #004E98;
+  --neo-accent-3: #FFD700;
+  --neo-font-sans: 'Geist', system-ui, sans-serif;
+  --neo-font-mono: 'Geist Mono', monospace;
+  --neo-shadow: 5px 5px 0px 0px #000;
+  --neo-border-width: 3px;
+  --neo-radius: 0px;
+}
+
+.dark {
+  --neo-bg: #1A1A1A;
+  --neo-text: #FFFDF7;
+  --neo-accent-1: #FF6B35;
+  --neo-accent-2: #3B8FD6;
+  --neo-accent-3: #FFD700;
+}

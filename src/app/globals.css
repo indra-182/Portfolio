@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --neo-bg: #FFFDF7;
+    --neo-text: #1A1A1A;
+    --neo-border: #000000;
+    --neo-accent-1: #FF6B35;
+    --neo-accent-2: #004E98;
+    --neo-accent-3: #FFD700;
+  }
+
+  .dark {
+    --neo-bg: #1A1A1A;
+    --neo-text: #FFFDF7;
+    --neo-accent-1: #FF6B35;
+    --neo-accent-2: #3B8FD6;
+    --neo-accent-3: #FFD700;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--neo-bg);
+    color: var(--neo-text);
+    font-family: 'Geist', system-ui, sans-serif;
+  }
+
+  * {
+    border-radius: 0;
+  }
+}
+
+@layer components {
+  .neo-btn {
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0px 0px #000;
+    background: var(--neo-accent-1);
+    color: #000;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+
+  .neo-btn:hover {
+    box-shadow: 2px 2px 0px 0px #000;
+    transform: translate(3px, 3px);
+  }
+
+  .neo-btn:active {
+    box-shadow: none;
+    transform: translate(5px, 5px);
+  }
+
+  .neo-card {
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0px 0px #000;
+    background: var(--neo-bg);
+    padding: 24px;
+  }
+
+  .neo-input {
+    border: 3px solid #000;
+    box-shadow: 3px 3px 0px 0px #000;
+    background: var(--neo-bg);
+    color: var(--neo-text);
+    padding: 10px 14px;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+  }
+
+  .neo-input:focus {
+    box-shadow: 5px 5px 0px 0px #000;
+  }
+
+  .neo-tag {
+    border: 2px solid #000;
+    background: var(--neo-accent-3);
+    color: #000;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    display: inline-block;
+  }
+
+  .neo-section-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    border-bottom: 4px solid #000;
+    padding-bottom: 8px;
+    margin-bottom: 32px;
+  }
+
+  .neo-prose {
+    line-height: 1.7;
+    font-size: 1.0625rem;
+  }
+
+  .neo-prose p {
+    margin-bottom: 16px;
+  }
+}
