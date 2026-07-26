@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useTheme } from '@/lib/theme-provider';
-import { Sun, Moon } from 'lucide-react';
+import { LuSun, LuMoon } from 'react-icons/lu';
 
 export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -21,7 +21,7 @@ export default function ThemeToggle() {
       }
       style={{ padding: '8px 12px', background: 'var(--neo-bg)' }}
     >
-      {mounted && resolvedTheme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+      {mounted && resolvedTheme === 'dark' ? <LuSun size={18} /> : <LuMoon size={18} />}
     </button>
   );
 }
