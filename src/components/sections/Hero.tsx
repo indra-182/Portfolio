@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="animate-fade-up">
         <p
           className="mb-4 text-sm font-bold uppercase tracking-widest"
-          style={{ color: "var(--neo-text-accent)" }}
+          style={{ color: 'var(--neo-text-accent)' }}
         >
           Hi, my name is
         </p>
@@ -17,7 +17,7 @@ export default function Hero() {
         </h1>
 
         <p className="mt-6 max-w-xl text-lg font-bold uppercase leading-relaxed">
-          Full-stack Engineer
+          Software Engineer
         </p>
 
         <p className="neo-prose mt-4 max-w-lg text-sm font-bold opacity-70">
@@ -28,11 +28,7 @@ export default function Hero() {
           <a href="#projects" className="neo-btn">
             View Projects
           </a>
-          <a
-            href="#contact"
-            className="neo-btn"
-            style={{ background: "var(--neo-bg)" }}
-          >
+          <a href="#contact" className="neo-btn" style={{ background: 'var(--neo-bg)' }}>
             Get In Touch
           </a>
         </div>
