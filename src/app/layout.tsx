@@ -56,7 +56,7 @@ export default function RootLayout({
     >
       <head>
         <Script id="theme-init" strategy="beforeInteractive">
-          {`(function(){var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}document.documentElement.classList.add(t)})()`}
+          {`(function(){var t=localStorage.getItem('theme');if(!t){t='light'}document.documentElement.classList.add(t)})()`}
         </Script>
       </head>
       <body style={{ background: 'var(--neo-bg)', color: 'var(--neo-text)' }}>

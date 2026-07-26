@@ -14,8 +14,8 @@ const ThemeContext = createContext<{
 const STORAGE_KEY = 'theme';
 
 function getStoredTheme(): StoredTheme {
-  if (typeof window === 'undefined') return 'system';
-  return (localStorage.getItem(STORAGE_KEY) as StoredTheme) || 'system';
+  if (typeof window === 'undefined') return 'light';
+  return (localStorage.getItem(STORAGE_KEY) as StoredTheme) || 'light';
 }
 
 function getSystemTheme(): Theme {
@@ -33,7 +33,7 @@ function applyTheme(theme: Theme) {
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<StoredTheme>('system');
+  const [theme, setThemeState] = useState<StoredTheme>('light');
   const [resolvedTheme, setResolvedTheme] = useState<Theme>('light');
   const [mounted, setMounted] = useState(false);
 
