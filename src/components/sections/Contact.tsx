@@ -60,6 +60,7 @@ export default function Contact() {
               id="name"
               name="name"
               type="text"
+              autoComplete="name"
               value={form.name}
               onChange={handleChange}
               className={fieldClassName}
@@ -81,6 +82,7 @@ export default function Contact() {
               id="email"
               name="email"
               type="email"
+              autoComplete="email"
               value={form.email}
               onChange={handleChange}
               className={fieldClassName}
@@ -105,6 +107,7 @@ export default function Contact() {
               id="message"
               name="message"
               rows={5}
+              autoComplete="off"
               value={form.message}
               onChange={handleChange}
               className={`${fieldClassName} resize-y`}

@@ -1,10 +1,6 @@
 import type { NextConfig } from "next";
 
-const scriptSrc = [
-  "'self'",
-  "'unsafe-inline'",
-  process.env.NODE_ENV === "development" ? "'unsafe-eval'" : "",
-].filter(Boolean).join(" ");
+const scriptSrc = ["'self'", "'unsafe-inline'", "'unsafe-eval'"].join(" ");
 
 const csp = [
   `default-src 'self'`,
