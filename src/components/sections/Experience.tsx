@@ -13,12 +13,12 @@ export default function Experience() {
           </div>
         </ScrollReveal>
 
-        <StaggerContainer className="relative border-l border-border pl-10">
+        <StaggerContainer className="relative border-l border-border">
           {experiences.map((exp, i) => (
-            <StaggerItem key={i} className="relative pb-10 last:pb-0">
+            <StaggerItem key={i} className="relative pl-10 pb-10 last:pb-0">
               <span
                 aria-hidden="true"
-                className="absolute -left-[2.1rem] top-1.5 size-3 rounded-full border-2 border-bg bg-accent"
+                className="absolute -left-1.5 top-1.5 size-3 rounded-full border-2 border-bg bg-accent"
               />
               <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
                 <div>
