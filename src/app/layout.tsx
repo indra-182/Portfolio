@@ -60,7 +60,7 @@ export default function RootLayout({
     >
       <head>
         <Script id="theme-init" strategy="beforeInteractive">
-          {`(function(){var t=localStorage.getItem('theme');if(!t){t='light'}document.documentElement.classList.add(t)})()`}
+          {`(function(){var t=localStorage.getItem('theme');if(!t){t='dark'}document.documentElement.classList.add(t)})()`}
         </Script>
       </head>
       <body>
@@ -69,7 +69,7 @@ export default function RootLayout({
             Skip to content
           </a>
           <Navbar />
-          <main id="main-content" tabIndex={-1} className="pt-18.25">
+          <main id="main-content" tabIndex={-1}>
             {children}
           </main>
           <Footer />

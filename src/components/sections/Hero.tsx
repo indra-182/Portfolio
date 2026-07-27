@@ -1,36 +1,54 @@
+'use client';
+
+import { motion, useReducedMotion } from 'framer-motion';
+
 export default function Hero() {
+  const reduce = useReducedMotion();
+
   return (
     <section
       id="hero"
-      className="magic-section relative flex min-h-[82vh] items-center overflow-hidden"
+      className="relative flex min-h-dvh items-center overflow-hidden px-6 pt-24"
     >
       <div
         aria-hidden="true"
-        className="animate-float pointer-events-none absolute right-[10%] top-[18%] h-52 w-52 rounded-full bg-indigo-500/15 blur-3xl"
+        className="pointer-events-none absolute -right-32 -top-32 h-[32rem] w-[32rem] rounded-full opacity-[0.06]"
+        style={{
+          background: 'radial-gradient(circle, var(--accent) 0%, transparent 70%)',
+        }}
       />
       <div
         aria-hidden="true"
-        className="animate-float-slow pointer-events-none absolute bottom-[15%] right-[22%] h-36 w-36 rounded-full bg-sky-400/15 blur-3xl"
+        className="pointer-events-none absolute -bottom-32 -left-32 h-[24rem] w-[24rem] rounded-full opacity-[0.04]"
+        style={{
+          background: 'radial-gradient(circle, var(--accent) 0%, transparent 70%)',
+        }}
       />
-      <div className="animate-fade-up relative">
-        <p className="magic-section__kicker mb-4">Hi, my name is</p>
-        <h1 className="magic-section__title max-w-4xl text-6xl sm:text-7xl lg:text-8xl">
-          Building thoughtful <span className="magic-gradient-text">digital products.</span>
-        </h1>
-        <p className="mt-6 max-w-xl text-xl font-medium tracking-[-0.03em] text-(--text-strong)">
-          I&apos;m Indra, a software engineer.
-        </p>
-        <p className="magic-lede mt-3 max-w-xl">
-          Building fast, accessible web experiences with modern tools.
-        </p>
-        <div className="mt-10 flex flex-wrap gap-3">
-          <a href="#projects" className="magic-button magic-button--primary">
-            View Projects
-          </a>
-          <a href="#contact" className="magic-button magic-button--outline">
-            Get In Touch
-          </a>
-        </div>
+      <div className="relative mx-auto w-full max-w-(--container)">
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <p className="mb-5 text-sm font-medium tracking-wide text-accent">Hi, my name is</p>
+          <h1 className="max-w-4xl text-5xl font-semibold leading-[1.05] tracking-[-0.06em] sm:text-6xl lg:text-7xl">
+            Building thoughtful <span className="text-accent">digital products.</span>
+          </h1>
+          <p className="mt-6 max-w-xl text-lg font-medium tracking-[-0.02em] text-text sm:text-xl">
+            I&apos;m Indra, a software engineer.
+          </p>
+          <p className="mt-2 max-w-xl text-base leading-relaxed text-text-secondary">
+            Building fast, accessible web experiences with modern tools.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <a href="#projects" className="btn btn--primary">
+              View Work
+            </a>
+            <a href="#contact" className="btn btn--outline">
+              Get in Touch
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

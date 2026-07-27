@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { createContext, useContext, useEffect, useReducer, useCallback } from 'react';
 
 type Theme = 'light' | 'dark';
 type StoredTheme = Theme | 'system';
@@ -32,45 +32,43 @@ function applyTheme(theme: Theme) {
   document.documentElement.classList.add(theme);
 }
 
+type ThemeState = { theme: StoredTheme; resolved: Theme };
+
+function themeReducer(
+  state: ThemeState,
+  action: { type: 'SET_THEME'; theme: StoredTheme },
+): ThemeState {
+  const resolved = resolveTheme(action.theme);
+  return { theme: action.theme, resolved };
+}
+
+function initState(): ThemeState {
+  const stored = getStoredTheme();
+  return { theme: stored, resolved: resolveTheme(stored) };
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<StoredTheme>('dark');
-  const [resolvedTheme, setResolvedTheme] = useState<Theme>('dark');
-  const [mounted, setMounted] = useState(false);
+  const [state, dispatch] = useReducer(themeReducer, undefined, initState);
 
   useEffect(() => {
-    const stored = getStoredTheme();
-    setThemeState(stored);
-    setResolvedTheme(resolveTheme(stored));
-    applyTheme(resolveTheme(stored));
-    setMounted(true);
-  }, []);
+    applyTheme(state.resolved);
+  }, [state.resolved]);
 
   useEffect(() => {
-    if (!mounted) return;
-    const resolved = resolveTheme(theme);
-    setResolvedTheme(resolved);
-    applyTheme(resolved);
-  }, [theme, mounted]);
-
-  useEffect(() => {
-    if (theme !== 'system') return;
+    if (state.theme !== 'system') return;
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const handler = () => {
-      const resolved = resolveTheme('system');
-      setResolvedTheme(resolved);
-      applyTheme(resolved);
-    };
+    const handler = () => dispatch({ type: 'SET_THEME', theme: 'system' });
     mq.addEventListener('change', handler);
     return () => mq.removeEventListener('change', handler);
-  }, [theme]);
+  }, [state.theme]);
 
   const setTheme = useCallback((t: StoredTheme) => {
     localStorage.setItem(STORAGE_KEY, t);
-    setThemeState(t);
+    dispatch({ type: 'SET_THEME', theme: t });
   }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme, resolvedTheme, setTheme }}>
+    <ThemeContext.Provider value={{ theme: state.theme, resolvedTheme: state.resolved, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );

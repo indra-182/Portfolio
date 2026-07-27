@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { ScrollReveal, StaggerContainer, StaggerItem, HoverCard } from '@/components/MotionWrapper';
 
 interface Project {
   title: string;
@@ -74,87 +75,103 @@ export default function Projects() {
   const [activeTag, setActiveTag] = useState<string | null>(null);
 
   const tags = allTags(projects);
-
   const filtered = activeTag ? projects.filter((p) => p.tags.includes(activeTag)) : projects;
 
   return (
-    <section id="projects" className="magic-section">
-      <div className="magic-section__heading">
-        <p className="magic-section__kicker mb-3">Selected work</p>
-        <h2 className="magic-section__title">Projects</h2>
-      </div>
+    <section id="projects" className="px-6 py-24">
+      <div className="mx-auto max-w-(--container)">
+        <ScrollReveal>
+          <div className="section-header">
+            <h2 className="section-title">Projects</h2>
+          </div>
+        </ScrollReveal>
 
-      <div className="mb-8 flex w-fit max-w-full flex-wrap gap-1 rounded-full border border-(--border) bg-(--surface) p-1">
-        <button
-          onClick={() => setActiveTag(null)}
-          className="magic-filter"
-          data-active={activeTag === null}
-        >
-          All
-        </button>
-        {tags.map((tag) => (
-          <button
-            key={tag}
-            onClick={() => setActiveTag(tag)}
-            className="magic-filter"
-            data-active={activeTag === tag}
-          >
-            {tag}
-          </button>
-        ))}
-      </div>
+        <ScrollReveal delay={0.1}>
+          <div className="mb-8 flex flex-wrap gap-1.5">
+            <button
+              onClick={() => setActiveTag(null)}
+              className={`tag-pill transition-colors ${
+                activeTag === null ? 'tag-pill--accent' : ''
+              }`}
+            >
+              All
+            </button>
+            {tags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setActiveTag(tag)}
+                className={`tag-pill transition-colors ${
+                  activeTag === tag ? 'tag-pill--accent' : ''
+                }`}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+        </ScrollReveal>
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        {filtered.map((project) => (
-          <article key={project.title} className="magic-card magic-card--interactive flex flex-col">
-            <div className="relative mb-5 h-52 w-full overflow-hidden rounded-xl border border-(--border)">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover transition-transform duration-500 hover:scale-105"
-                sizes="(max-width: 640px) 100vw, 50vw"
-              />
-            </div>
+        <StaggerContainer className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {filtered.map((project, i) => (
+            <StaggerItem
+              key={project.title}
+              className={i === 0 ? 'sm:col-span-2 lg:col-span-2' : ''}
+            >
+              <HoverCard
+                as="article"
+                className="flex h-full flex-col border border-border bg-surface p-5"
+              >
+                <div className="relative mb-4 aspect-16/10 w-full overflow-hidden bg-soft">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-500 hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                  />
+                </div>
 
-            <h3 className="mb-2 text-xl font-semibold leading-tight tracking-[-0.045em] text-(--text-strong)">
-              {project.title}
-            </h3>
+                <h3 className="mb-2 text-lg font-semibold tracking-tight text-text">
+                  {project.title}
+                </h3>
 
-            <p className="mb-5 text-sm leading-relaxed text-(--text)">{project.description}</p>
+                <p className="mb-4 text-sm leading-relaxed text-text-secondary">
+                  {project.description}
+                </p>
 
-            <div className="mb-4 flex flex-wrap gap-1">
-              {project.tags.map((tag) => (
-                <span key={tag} className="magic-tag text-[10px]">
-                  {tag}
-                </span>
-              ))}
-            </div>
+                <div className="mb-4 flex flex-wrap gap-1.5">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="tag-pill text-[10px]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
 
-            <div className="mt-auto flex gap-3">
-              {project.demoUrl && (
-                <a
-                  href={project.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="magic-button magic-button--primary text-sm"
-                >
-                  Demo
-                </a>
-              )}
-              {project.repoUrl && (
-                <a
-                  href={project.repoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="magic-button magic-button--outline text-sm"
-                >
-                  Repo
-                </a>
-              )}
-            </div>
-          </article>
-        ))}
+                <div className="mt-auto flex gap-3">
+                  {project.demoUrl && (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn--primary text-xs"
+                    >
+                      Demo
+                    </a>
+                  )}
+                  {project.repoUrl && (
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn--outline text-xs"
+                    >
+                      Repo
+                    </a>
+                  )}
+                </div>
+              </HoverCard>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
       </div>
     </section>
   );

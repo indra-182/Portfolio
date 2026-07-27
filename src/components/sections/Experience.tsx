@@ -1,46 +1,48 @@
+'use client';
+
 import { experiences } from '@/data/experience';
+import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/MotionWrapper';
 
 export default function Experience() {
   return (
-    <section id="experience" className="magic-section">
-      <div className="magic-section__heading">
-        <p className="magic-section__kicker mb-3">Career so far</p>
-        <h2 className="magic-section__title">Experience</h2>
-      </div>
+    <section id="experience" className="border-t border-border px-6 py-24">
+      <div className="mx-auto max-w-(--container)">
+        <ScrollReveal>
+          <div className="section-header">
+            <h2 className="section-title">Experience</h2>
+          </div>
+        </ScrollReveal>
 
-      <div className="relative border-s border-(--border) ps-7">
-        <div className="space-y-5">
+        <StaggerContainer className="relative border-l border-border pl-8">
           {experiences.map((exp, i) => (
-            <article key={i} className="relative">
+            <StaggerItem key={i} className="relative pb-10 last:pb-0">
               <span
                 aria-hidden="true"
-                className="absolute inset-s-[-2.02rem] top-7 h-3.5 w-3.5 rounded-full border-[3px] border-(--page-background) bg-(--accent) shadow-[0_0_0_1px_var(--border)]"
+                className="absolute -left-2.15rem top-1.5 size-3 rounded-full border-2 border-bg bg-accent"
               />
-              <div className="magic-card magic-card--interactive">
-                <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-                  <div>
-                    <h3 className="text-xl font-semibold tracking-[-0.04em] text-(--text-strong)">
-                      {exp.role}
-                    </h3>
-                    <p className="mt-1 text-sm text-(--text-weak)">{exp.company}</p>
-                  </div>
-                  <span className="magic-tag magic-tag--accent w-fit">{exp.period}</span>
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <h3 className="text-lg font-semibold tracking-tight text-text">{exp.role}</h3>
+                  <p className="text-sm text-text-tertiary">{exp.company}</p>
                 </div>
-                <ul className="space-y-2.5">
+                <span className="tag-pill tag-pill--accent mt-1 w-fit sm:mt-0">{exp.period}</span>
+              </div>
+              {exp.achievements.length > 0 && (
+                <ul className="mt-4 space-y-2">
                   {exp.achievements.map((achievement, j) => (
-                    <li key={j} className="flex gap-3 text-sm leading-relaxed text-(--text)">
+                    <li key={j} className="flex gap-3 text-sm leading-relaxed text-text-secondary">
                       <span
                         aria-hidden="true"
-                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent)"
+                        className="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-tertiary"
                       />
                       {achievement}
                     </li>
                   ))}
                 </ul>
-              </div>
-            </article>
+              )}
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
