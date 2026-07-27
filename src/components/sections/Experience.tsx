@@ -2,56 +2,43 @@ import { experiences } from '@/data/experience';
 
 export default function Experience() {
   return (
-    <section id="experience" className="mx-auto max-w-6xl px-6 py-24">
-      <h2 className="neo-section-title">Experience</h2>
+    <section id="experience" className="magic-section">
+      <div className="magic-section__heading">
+        <p className="magic-section__kicker mb-3">Career so far</p>
+        <h2 className="magic-section__title">Experience</h2>
+      </div>
 
-      <div className="relative">
-        <div
-          className="absolute left-3.75 top-0 h-full w-0.75"
-          style={{ background: 'var(--neo-border)' }}
-        />
-
-        <div className="space-y-10">
+      <div className="relative border-s border-(--border) ps-7">
+        <div className="space-y-5">
           {experiences.map((exp, i) => (
-            <div key={i} className="relative pl-12">
-              <div
-                className="absolute left-1.25 top-1 h-5.75 w-5.75 rounded-full border-[3px]"
-                style={{
-                  background: 'var(--neo-accent-1)',
-                  borderColor: 'var(--neo-border)',
-                }}
+            <article key={i} className="relative">
+              <span
+                aria-hidden="true"
+                className="absolute inset-s-[-2.02rem] top-7 h-3.5 w-3.5 rounded-full border-[3px] border-(--page-background) bg-(--accent) shadow-[0_0_0_1px_var(--border)]"
               />
-
-              <div className="neo-card">
-                <div className="mb-2 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                  <h3 className="text-xl font-black uppercase tracking-tight">{exp.role}</h3>
-                  <span
-                    className="text-xs font-bold uppercase"
-                    style={{ color: 'var(--neo-accent-2)' }}
-                  >
-                    {exp.period}
-                  </span>
+              <div className="magic-card magic-card--interactive">
+                <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <h3 className="text-xl font-semibold tracking-[-0.04em] text-(--text-strong)">
+                      {exp.role}
+                    </h3>
+                    <p className="mt-1 text-sm text-(--text-weak)">{exp.company}</p>
+                  </div>
+                  <span className="magic-tag magic-tag--accent w-fit">{exp.period}</span>
                 </div>
-
-                <p className="mb-4 text-sm font-bold uppercase opacity-70">{exp.company}</p>
-
-                <ul className="space-y-2">
-                  {exp.achievements.map((a, j) => (
-                    <li
-                      key={j}
-                      className="neo-prose flex items-start gap-2 text-sm"
-                      style={{ lineHeight: '1.5' }}
-                    >
+                <ul className="space-y-2.5">
+                  {exp.achievements.map((achievement, j) => (
+                    <li key={j} className="flex gap-3 text-sm leading-relaxed text-(--text)">
                       <span
-                        className="mt-1.75 h-1.5 w-1.5 shrink-0"
-                        style={{ background: 'var(--neo-accent-1)' }}
+                        aria-hidden="true"
+                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent)"
                       />
-                      {a}
+                      {achievement}
                     </li>
                   ))}
                 </ul>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

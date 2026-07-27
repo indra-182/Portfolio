@@ -14,12 +14,12 @@ const ThemeContext = createContext<{
 const STORAGE_KEY = 'theme';
 
 function getStoredTheme(): StoredTheme {
-  if (typeof window === 'undefined') return 'light';
-  return (localStorage.getItem(STORAGE_KEY) as StoredTheme) || 'light';
+  if (typeof window === 'undefined') return 'dark';
+  return (localStorage.getItem(STORAGE_KEY) as StoredTheme) || 'dark';
 }
 
 function getSystemTheme(): Theme {
-  if (typeof window === 'undefined') return 'light';
+  if (typeof window === 'undefined') return 'dark';
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
@@ -33,8 +33,8 @@ function applyTheme(theme: Theme) {
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<StoredTheme>('light');
-  const [resolvedTheme, setResolvedTheme] = useState<Theme>('light');
+  const [theme, setThemeState] = useState<StoredTheme>('dark');
+  const [resolvedTheme, setResolvedTheme] = useState<Theme>('dark');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

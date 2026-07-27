@@ -18,7 +18,11 @@ function isAllowedOrigin(request: Request): boolean {
     const url = new URL(source);
     return ALLOWED_ORIGINS.some((o) => {
       const allowed = new URL(o);
-      return url.protocol === allowed.protocol && url.hostname === allowed.hostname && url.port === allowed.port;
+      return (
+        url.protocol === allowed.protocol &&
+        url.hostname === allowed.hostname &&
+        url.port === allowed.port
+      );
     });
   } catch {
     return false;
@@ -87,9 +91,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch {
-    return NextResponse.json(
-      { success: false, error: 'Failed to send email' },
-      { status: 500 }
-    );
+    return NextResponse.json({ success: false, error: 'Failed to send email' }, { status: 500 });
   }
 }

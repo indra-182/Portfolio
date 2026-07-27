@@ -41,6 +41,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0d' },
+  ],
 };
 
 export default function RootLayout({
@@ -59,10 +63,15 @@ export default function RootLayout({
           {`(function(){var t=localStorage.getItem('theme');if(!t){t='light'}document.documentElement.classList.add(t)})()`}
         </Script>
       </head>
-      <body style={{ background: 'var(--neo-bg)', color: 'var(--neo-text)' }}>
+      <body>
         <ThemeProvider>
+          <a className="skip-link" href="#main-content">
+            Skip to content
+          </a>
           <Navbar />
-          <main className="pt-18.25">{children}</main>
+          <main id="main-content" tabIndex={-1} className="pt-18.25">
+            {children}
+          </main>
           <Footer />
         </ThemeProvider>
       </body>

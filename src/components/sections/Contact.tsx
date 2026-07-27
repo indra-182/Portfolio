@@ -16,9 +16,7 @@ export default function Contact() {
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     setErrors((prev) => ({ ...prev, [e.target.name]: undefined }));
   }
@@ -27,7 +25,6 @@ export default function Contact() {
     e.preventDefault();
     setErrors({});
     setStatus('idle');
-
     const result = contactSchema.safeParse(form);
     if (!result.success) {
       const fieldErrors: Partial<Record<keyof FormData, string>> = {};
@@ -40,24 +37,23 @@ export default function Contact() {
     }
 
     setStatus('sending');
-
     const mailto = `mailto:mahadiindra2@gmail.com?subject=Contact from ${encodeURIComponent(form.name)}&body=${encodeURIComponent(form.message)}%0A%0AFrom: ${encodeURIComponent(form.email)}`;
     window.location.href = mailto;
-
     setForm({ name: '', email: '', message: '' });
   }
 
-  return (
-    <section id="contact" className="mx-auto max-w-6xl px-6 py-24">
-      <h2 className="neo-section-title">Contact</h2>
+  const fieldClassName = 'magic-input w-full';
 
-      <div className="neo-card max-w-xl">
+  return (
+    <section id="contact" className="magic-section">
+      <div className="magic-section__heading">
+        <p className="magic-section__kicker mb-3">Let&apos;s work together</p>
+        <h2 className="magic-section__title">Contact</h2>
+      </div>
+      <div className="magic-card max-w-xl">
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div>
-            <label
-              htmlFor="name"
-              className="mb-1 block text-xs font-bold uppercase"
-            >
+            <label htmlFor="name" className="mb-2 block text-sm font-medium text-(--text-strong)">
               Name
             </label>
             <input
@@ -66,20 +62,19 @@ export default function Contact() {
               type="text"
               value={form.name}
               onChange={handleChange}
-              className="neo-input w-full"
+              className={fieldClassName}
+              aria-invalid={Boolean(errors.name)}
+              aria-describedby={errors.name ? 'name-error' : undefined}
+              required
             />
             {errors.name && (
-              <p className="mt-1 text-xs font-bold uppercase" style={{ color: 'var(--neo-accent-1)' }}>
+              <p id="name-error" className="mt-1.5 text-xs text-red-500">
                 {errors.name}
               </p>
             )}
           </div>
-
           <div>
-            <label
-              htmlFor="email"
-              className="mb-1 block text-xs font-bold uppercase"
-            >
+            <label htmlFor="email" className="mb-2 block text-sm font-medium text-(--text-strong)">
               Email
             </label>
             <input
@@ -88,19 +83,21 @@ export default function Contact() {
               type="email"
               value={form.email}
               onChange={handleChange}
-              className="neo-input w-full"
+              className={fieldClassName}
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? 'email-error' : undefined}
+              required
             />
             {errors.email && (
-              <p className="mt-1 text-xs font-bold uppercase" style={{ color: 'var(--neo-accent-1)' }}>
+              <p id="email-error" className="mt-1.5 text-xs text-red-500">
                 {errors.email}
               </p>
             )}
           </div>
-
           <div>
             <label
               htmlFor="message"
-              className="mb-1 block text-xs font-bold uppercase"
+              className="mb-2 block text-sm font-medium text-(--text-strong)"
             >
               Message
             </label>
@@ -110,31 +107,29 @@ export default function Contact() {
               rows={5}
               value={form.message}
               onChange={handleChange}
-              className="neo-input w-full resize-y"
+              className={`${fieldClassName} resize-y`}
+              aria-invalid={Boolean(errors.message)}
+              aria-describedby={errors.message ? 'message-error' : undefined}
+              required
             />
             {errors.message && (
-              <p className="mt-1 text-xs font-bold uppercase" style={{ color: 'var(--neo-accent-1)' }}>
+              <p id="message-error" className="mt-1.5 text-xs text-red-500">
                 {errors.message}
               </p>
             )}
           </div>
-
           <button
             type="submit"
             disabled={status === 'sending'}
-            className="neo-btn w-full justify-center disabled:opacity-50"
+            className="magic-button magic-button--primary w-full disabled:cursor-not-allowed disabled:opacity-50"
           >
             {status === 'sending' ? 'Sending...' : 'Send Message'}
           </button>
-
           {status === 'success' && (
-            <p className="text-center text-sm font-bold uppercase" style={{ color: 'var(--neo-accent-2)' }}>
-              Message sent successfully!
-            </p>
+            <p className="text-center text-sm text-emerald-500">Message sent successfully!</p>
           )}
-
           {status === 'error' && (
-            <p className="text-center text-sm font-bold uppercase" style={{ color: 'var(--neo-accent-1)' }}>
+            <p className="text-center text-sm text-red-500">
               Something went wrong. Please try again.
             </p>
           )}

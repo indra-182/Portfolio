@@ -15,11 +15,10 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      className="neo-btn"
+      className="magic-icon-button"
       aria-label={
         mounted ? `Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} mode` : 'Toggle theme'
       }
-      style={{ padding: '8px 12px', background: 'var(--neo-bg)' }}
     >
       {mounted && resolvedTheme === 'dark' ? <LuSun size={18} /> : <LuMoon size={18} />}
     </button>

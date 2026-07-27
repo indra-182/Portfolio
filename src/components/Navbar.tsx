@@ -40,20 +40,9 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50"
-      style={{
-        background: 'var(--neo-bg)',
-        borderBottom: '3px solid #000',
-        boxShadow: '0 3px 0px 0px #000',
-      }}
-    >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a
-          href="#"
-          className="text-xl font-black uppercase tracking-tight"
-          style={{ color: 'var(--neo-text)' }}
-        >
+    <nav aria-label="Primary" className="magic-nav fixed inset-x-0 top-0 z-50">
+      <div className="magic-nav__inner flex items-center justify-between">
+        <a href="#" className="magic-brand">
           Indra.dev
         </a>
 
@@ -61,15 +50,7 @@ export default function Navbar() {
           {navLinks.map((link) => {
             const isActive = active === link.href.slice(1);
             return (
-              <a
-                key={link.href}
-                href={link.href}
-                className="px-3 py-2 text-sm font-bold uppercase tracking-wide transition-colors hover:bg-black hover:text-white"
-                style={{
-                  color: isActive ? '#FFF' : 'var(--neo-text)',
-                  background: isActive ? '#000' : 'transparent',
-                }}
-              >
+              <a key={link.href} href={link.href} className="magic-nav-link" data-active={isActive}>
                 {link.label}
               </a>
             );

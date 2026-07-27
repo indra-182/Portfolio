@@ -2,33 +2,32 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="mx-auto flex min-h-[80vh] max-w-6xl flex-col items-start justify-center px-6"
+      className="magic-section relative flex min-h-[82vh] items-center overflow-hidden"
     >
-      <div className="animate-fade-up">
-        <p
-          className="mb-4 text-sm font-bold uppercase tracking-widest"
-          style={{ color: 'var(--neo-text-accent)' }}
-        >
-          Hi, my name is
-        </p>
-
-        <h1 className="text-6xl font-black uppercase leading-none tracking-tighter sm:text-7xl lg:text-8xl">
-          Indra
+      <div
+        aria-hidden="true"
+        className="animate-float pointer-events-none absolute right-[10%] top-[18%] h-52 w-52 rounded-full bg-indigo-500/15 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="animate-float-slow pointer-events-none absolute bottom-[15%] right-[22%] h-36 w-36 rounded-full bg-sky-400/15 blur-3xl"
+      />
+      <div className="animate-fade-up relative">
+        <p className="magic-section__kicker mb-4">Hi, my name is</p>
+        <h1 className="magic-section__title max-w-4xl text-6xl sm:text-7xl lg:text-8xl">
+          Building thoughtful <span className="magic-gradient-text">digital products.</span>
         </h1>
-
-        <p className="mt-6 max-w-xl text-lg font-bold uppercase leading-relaxed">
-          Software Engineer
+        <p className="mt-6 max-w-xl text-xl font-medium tracking-[-0.03em] text-(--text-strong)">
+          I&apos;m Indra, a software engineer.
         </p>
-
-        <p className="neo-prose mt-4 max-w-lg text-sm font-bold opacity-70">
+        <p className="magic-lede mt-3 max-w-xl">
           Building fast, accessible web experiences with modern tools.
         </p>
-
-        <div className="mt-10 flex flex-wrap gap-4">
-          <a href="#projects" className="neo-btn">
+        <div className="mt-10 flex flex-wrap gap-3">
+          <a href="#projects" className="magic-button magic-button--primary">
             View Projects
           </a>
-          <a href="#contact" className="neo-btn" style={{ background: 'var(--neo-bg)' }}>
+          <a href="#contact" className="magic-button magic-button--outline">
             Get In Touch
           </a>
         </div>

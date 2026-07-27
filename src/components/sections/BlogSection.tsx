@@ -12,21 +12,24 @@ export default async function BlogSection() {
   }
 
   return (
-    <section id="blog" className="mx-auto max-w-6xl px-6 py-24">
-      <h2 className="neo-section-title">Latest Posts</h2>
+    <section id="blog" className="magic-section">
+      <div className="magic-section__heading">
+        <p className="magic-section__kicker mb-3">From the journal</p>
+        <h2 className="magic-section__title">Latest Posts</h2>
+      </div>
 
       {error || posts.length === 0 ? (
-        <div className="neo-card text-center">
-          <p className="mb-4 text-lg font-bold uppercase">
+        <div className="magic-card text-center">
+          <p className="mb-2 text-lg font-semibold tracking-[-0.03em] text-(--text-strong)">
             Latest from my blog
           </p>
-          <p className="text-sm">
+          <p className="text-sm text-(--text-weak)">
             Check{' '}
             <a
               href="https://blog-mahadi-indra.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold underline"
+              className="font-medium text-(--accent) underline"
             >
               blog.indra.dev
             </a>

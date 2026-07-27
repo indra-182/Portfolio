@@ -2,7 +2,7 @@ export interface Post {
   slug: string;
   title: string;
   excerpt: string;
-  type: "article" | "curation";
+  type: 'article' | 'curation';
   coverImage?: string;
   date: string;
   category: string;
@@ -17,18 +17,15 @@ export async function fetchLatestPosts(limit = 6): Promise<Post[]> {
   const timeout = setTimeout(() => controller.abort(), 3000);
 
   try {
-    const res = await fetch(
-      `https://blog-mahadi-indra.vercel.app/api/posts?limit=${limit}`,
-      {
-        signal: controller.signal,
-        next: { revalidate: 900 },
-      },
-    );
+    const res = await fetch(`https://blog-mahadi-indra.vercel.app/api/posts?limit=${limit}`, {
+      signal: controller.signal,
+      next: { revalidate: 900 },
+    });
 
     if (!res.ok) return [];
 
     const data = await res.json();
-    return data.data ?? (data.posts ?? []);
+    return data.data ?? data.posts ?? [];
   } catch {
     return [];
   } finally {

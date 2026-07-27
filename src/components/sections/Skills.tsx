@@ -1,44 +1,24 @@
 import { skills } from '@/data/skills';
 
-function levelColor(level: string): string {
-  switch (level) {
-    case 'Advanced':
-      return '#FF6B35';
-    case 'Proficient':
-      return '#004E98';
-    default:
-      return '#FFD700';
-  }
-}
-
 export default function Skills() {
   return (
-    <section id="skills" className="mx-auto max-w-6xl px-6 py-24">
-      <h2 className="neo-section-title">Skills</h2>
+    <section id="skills" className="magic-section">
+      <div className="magic-section__heading">
+        <p className="magic-section__kicker mb-3">Tools I reach for</p>
+        <h2 className="magic-section__title">Skills</h2>
+      </div>
 
-      <div className="grid gap-8 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2">
         {skills.map((group) => (
-          <div key={group.category} className="neo-card">
-            <h3
-              className="mb-4 text-lg font-black uppercase tracking-tight"
-              style={{ color: 'var(--neo-text-accent)' }}
-            >
+          <div key={group.category} className="magic-card magic-card--interactive">
+            <h3 className="mb-5 text-lg font-semibold tracking-[-0.035em] text-(--text-strong)">
               {group.category}
             </h3>
-
             <div className="flex flex-wrap gap-2">
               {group.items.map((skill) => (
                 <div key={skill.name} className="flex items-center gap-2">
-                  <span
-                    className="neo-tag"
-                    style={{
-                      background: levelColor(skill.level),
-                      color: skill.level === 'Proficient' ? '#FFF' : '#000',
-                    }}
-                  >
-                    {skill.name}
-                  </span>
-                  <span className="text-[10px] font-bold uppercase opacity-50">
+                  <span className="magic-tag">{skill.name}</span>
+                  <span className="text-[10px] font-medium uppercase tracking-wide text-(--text-weak)">
                     {skill.level}
                   </span>
                 </div>

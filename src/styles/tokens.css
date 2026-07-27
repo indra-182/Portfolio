@@ -1,10 +1,10 @@
 :root {
-  --neo-bg: #FFFDF7;
-  --neo-text: #1A1A1A;
+  --neo-bg: #fffdf7;
+  --neo-text: #1a1a1a;
   --neo-border: #000000;
-    --neo-accent-1: #E86030;
-    --neo-accent-2: #1E6B9E;
-    --neo-accent-3: #FFD700;
+  --neo-accent-1: #e86030;
+  --neo-accent-2: #1e6b9e;
+  --neo-accent-3: #ffd700;
   --neo-font-sans: 'Geist', system-ui, sans-serif;
   --neo-font-mono: 'Geist Mono', monospace;
   --neo-shadow: 5px 5px 0px 0px #000;
@@ -13,10 +13,9 @@
 }
 
 .dark {
-  --neo-bg: #1A1A1A;
-  --neo-text: #FFFDF7;
-  --neo-accent-1: #FF6B35;
-    --neo-accent-2: #1E6B9E;
-  --neo-accent-3: #FFD700;
+  --neo-bg: #1a1a1a;
+  --neo-text: #fffdf7;
+  --neo-accent-1: #ff6b35;
+  --neo-accent-2: #1e6b9e;
+  --neo-accent-3: #ffd700;
 }
-
