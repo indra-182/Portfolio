@@ -6,20 +6,17 @@ export default function Hero() {
   const reduce = useReducedMotion();
 
   return (
-    <section
-      id="hero"
-      className="relative flex min-h-dvh items-center overflow-hidden px-6 pt-24"
-    >
+    <section id="hero" className="relative flex min-h-dvh items-center overflow-hidden px-6 pt-24">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-32 -top-32 h-[32rem] w-[32rem] rounded-full opacity-[0.06]"
+        className="pointer-events-none absolute -right-32 -top-32 h-128 w-lg rounded-full opacity-[0.06]"
         style={{
           background: 'radial-gradient(circle, var(--accent) 0%, transparent 70%)',
         }}
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-32 -left-32 h-[24rem] w-[24rem] rounded-full opacity-[0.04]"
+        className="pointer-events-none absolute -bottom-32 -left-32 h-96 w-[24rem] rounded-full opacity-[0.04]"
         style={{
           background: 'radial-gradient(circle, var(--accent) 0%, transparent 70%)',
         }}
