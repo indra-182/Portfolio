@@ -1,19 +1,22 @@
 'use client';
 
 import { useState } from 'react';
-import { z } from 'zod';
-import { ScrollReveal } from '@/components/MotionWrapper';
 
-const contactSchema = z.object({
-  name: z.string().min(1, 'Enter your name'),
-  email: z.string().email('Enter a valid email address'),
-  message: z.string().min(1, 'Tell me a little about the opportunity'),
-});
-
-type FormData = z.infer<typeof contactSchema>;
+type FormData = { name: string; email: string; message: string };
 type FormErrors = Partial<Record<keyof FormData, string>>;
 
 const initialForm: FormData = { name: '', email: '', message: '' };
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validateForm(form: FormData): FormErrors {
+  const errors: FormErrors = {};
+
+  if (!form.name.trim()) errors.name = 'Enter your name';
+  if (!emailPattern.test(form.email)) errors.email = 'Enter a valid email address';
+  if (!form.message.trim()) errors.message = 'Tell me a little about the opportunity';
+
+  return errors;
+}
 
 export default function Contact() {
   const [form, setForm] = useState<FormData>(initialForm);
@@ -30,13 +33,8 @@ export default function Contact() {
     setErrors({});
     setStatus('idle');
 
-    const result = contactSchema.safeParse(form);
-    if (!result.success) {
-      const fieldErrors: FormErrors = {};
-      for (const issue of result.error.issues) {
-        const field = issue.path[0] as keyof FormData;
-        if (!fieldErrors[field]) fieldErrors[field] = issue.message;
-      }
+    const fieldErrors = validateForm(form);
+    if (Object.keys(fieldErrors).length > 0) {
       setErrors(fieldErrors);
       return;
     }
@@ -47,7 +45,7 @@ export default function Contact() {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(result.data),
+        body: JSON.stringify(form),
       });
       const payload = (await response.json()) as { success?: boolean };
 
@@ -63,7 +61,7 @@ export default function Contact() {
   return (
     <section id="contact" className="section section--contact" aria-labelledby="contact-heading">
       <div className="section-shell contact-layout">
-        <ScrollReveal>
+        <div data-reveal>
           <div className="contact-intro">
             <p className="eyebrow">Let&apos;s work together</p>
             <h2 id="contact-heading">Have a complex product to make clearer?</h2>
@@ -85,9 +83,9 @@ export default function Contact() {
               </a>
             </div>
           </div>
-        </ScrollReveal>
+        </div>
 
-        <ScrollReveal delay={0.1}>
+        <div data-reveal style={{ '--reveal-delay': '0.1s' } as React.CSSProperties}>
           <form
             className="contact-form"
             onSubmit={handleSubmit}
@@ -183,7 +181,7 @@ export default function Contact() {
               </div>
             </fieldset>
           </form>
-        </ScrollReveal>
+        </div>
       </div>
     </section>
   );
