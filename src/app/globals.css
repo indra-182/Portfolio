@@ -80,7 +80,7 @@
 
   ::selection {
     background: var(--color-accent);
-    color: #fff;
+    color: var(--color-on-accent);
   }
 }
 
@@ -93,7 +93,7 @@
     padding: var(--space-3) var(--space-4);
     border: var(--border-strong) solid var(--color-ink);
     background: var(--color-accent);
-    color: #fff;
+    color: var(--color-on-accent);
     font-weight: 800;
     transform: translateY(-180%);
     transition: transform var(--duration-fast) var(--ease-standard);
@@ -149,7 +149,7 @@
     block-size: 2.45rem;
     border: var(--border-strong) solid var(--color-ink);
     background: var(--color-accent);
-    color: #fff;
+    color: var(--color-on-accent);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     font-weight: 800;
@@ -253,7 +253,7 @@
   .menu-toggle:hover {
     border-color: var(--color-ink);
     background: var(--color-accent);
-    color: #fff;
+    color: var(--color-on-accent);
     transform: translate(-0.12rem, -0.12rem);
   }
 
@@ -454,13 +454,14 @@
   .button--primary {
     background: var(--color-accent);
     border-color: var(--color-accent);
-    color: #fff;
+    color: var(--color-on-accent);
     box-shadow: 0.35rem 0.35rem 0 var(--color-ink);
   }
 
   .button--primary:hover {
     background: var(--color-accent-strong);
     border-color: var(--color-accent-strong);
+    color: var(--color-inverse);
     box-shadow: 0.5rem 0.5rem 0 var(--color-ink);
   }
 
@@ -538,7 +539,7 @@
   }
 
   .hero__card-footer .eyebrow {
-    color: var(--color-accent);
+    color: var(--color-accent-on-ink);
   }
 
   .hero__card-footer p:last-child {
@@ -930,17 +931,17 @@
     padding: var(--space-6);
     border: var(--border-strong) solid var(--color-ink);
     background: var(--color-accent);
-    color: #fff;
+    color: var(--color-on-accent);
     box-shadow: var(--shadow-lift);
   }
 
   .principle-card .eyebrow {
-    color: #fff;
+    color: var(--color-on-accent);
   }
 
   .principle-card__quote {
     margin-block-start: var(--space-10);
-    color: #fff;
+    color: var(--color-on-accent);
     font-size: clamp(1.5rem, 3vw, 2.5rem);
     font-weight: 700;
     letter-spacing: -0.07em;
@@ -949,7 +950,7 @@
 
   .principle-card__note {
     margin-block-start: var(--space-10);
-    color: color-mix(in srgb, #fff 82%, var(--color-accent));
+    color: var(--color-on-accent);
     font-size: 0.84rem;
     line-height: 1.55;
   }
@@ -992,7 +993,7 @@
     block-size: 2.25rem;
     border: var(--border-thin) solid var(--color-ink);
     background: var(--color-accent);
-    color: #fff;
+    color: var(--color-on-accent);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     font-weight: 800;
@@ -1233,7 +1234,7 @@
   }
 
   .footer p {
-    color: var(--color-faint);
+    color: var(--color-muted-on-ink);
     font-size: 0.7rem;
   }
 
@@ -1254,7 +1255,7 @@
   }
 
   .footer__links a:hover {
-    color: var(--color-accent);
+    color: var(--color-accent-on-ink);
   }
 
   .case-study {
