@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import Hero from '@/components/sections/Hero';
 import Projects from '@/components/sections/Projects';
 import Experience from '@/components/sections/Experience';
@@ -5,7 +6,8 @@ import Skills from '@/components/sections/Skills';
 import About from '@/components/sections/About';
 import Testimonials from '@/components/sections/Testimonials';
 import BlogSection from '@/components/sections/BlogSection';
-import Contact from '@/components/sections/Contact';
+
+const Contact = dynamic(() => import('@/components/sections/Contact'));
 
 const siteUrl = process.env.SITE_URL || 'https://indra.dev';
 

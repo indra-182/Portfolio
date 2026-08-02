@@ -1,8 +1,44 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { LuMoon, LuSun } from 'react-icons/lu';
 import { useTheme } from '@/lib/theme-provider';
+
+function MoonIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.5 6.5 0 0 0 21 12.8Z" />
+    </svg>
+  );
+}
+
+function SunIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+    </svg>
+  );
+}
 
 export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -22,7 +58,7 @@ export default function ThemeToggle() {
       onClick={() => setTheme(nextTheme)}
       aria-label={mounted ? `Switch to ${nextTheme} mode` : 'Toggle theme'}
     >
-      {mounted && resolvedTheme === 'dark' ? <LuSun size={16} /> : <LuMoon size={16} />}
+      {mounted && resolvedTheme === 'dark' ? <SunIcon /> : <MoonIcon />}
     </button>
   );
 }
