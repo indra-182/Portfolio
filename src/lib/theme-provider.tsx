@@ -1,6 +1,13 @@
 'use client';
 
-import { createContext, useContext, useEffect, useReducer, useCallback } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+  type ReactNode,
+} from 'react';
 
 type Theme = 'light' | 'dark';
 type StoredTheme = Theme | 'system';
@@ -8,18 +15,20 @@ type StoredTheme = Theme | 'system';
 const ThemeContext = createContext<{
   theme: StoredTheme;
   resolvedTheme: Theme;
-  setTheme: (t: StoredTheme) => void;
+  setTheme: (theme: StoredTheme) => void;
 } | null>(null);
 
 const STORAGE_KEY = 'theme';
 
 function getStoredTheme(): StoredTheme {
-  if (typeof window === 'undefined') return 'dark';
-  return (localStorage.getItem(STORAGE_KEY) as StoredTheme) || 'dark';
+  if (typeof window === 'undefined') return 'system';
+
+  const stored = localStorage.getItem(STORAGE_KEY);
+  return stored === 'light' || stored === 'dark' || stored === 'system' ? stored : 'system';
 }
 
 function getSystemTheme(): Theme {
-  if (typeof window === 'undefined') return 'dark';
+  if (typeof window === 'undefined') return 'light';
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
@@ -38,16 +47,17 @@ function themeReducer(
   state: ThemeState,
   action: { type: 'SET_THEME'; theme: StoredTheme },
 ): ThemeState {
-  const resolved = resolveTheme(action.theme);
-  return { theme: action.theme, resolved };
+  if (state.theme === action.theme && action.theme !== 'system') return state;
+
+  return { theme: action.theme, resolved: resolveTheme(action.theme) };
 }
 
 function initState(): ThemeState {
-  const stored = getStoredTheme();
-  return { theme: stored, resolved: resolveTheme(stored) };
+  const theme = getStoredTheme();
+  return { theme, resolved: resolveTheme(theme) };
 }
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+export function ThemeProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(themeReducer, undefined, initState);
 
   useEffect(() => {
@@ -56,15 +66,16 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (state.theme !== 'system') return;
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const handler = () => dispatch({ type: 'SET_THEME', theme: 'system' });
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = () => dispatch({ type: 'SET_THEME', theme: 'system' });
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
   }, [state.theme]);
 
-  const setTheme = useCallback((t: StoredTheme) => {
-    localStorage.setItem(STORAGE_KEY, t);
-    dispatch({ type: 'SET_THEME', theme: t });
+  const setTheme = useCallback((theme: StoredTheme) => {
+    localStorage.setItem(STORAGE_KEY, theme);
+    dispatch({ type: 'SET_THEME', theme });
   }, []);
 
   return (
@@ -75,7 +86,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useTheme() {
-  const ctx = useContext(ThemeContext);
-  if (!ctx) throw new Error('useTheme must be used within ThemeProvider');
-  return ctx;
+  const context = useContext(ThemeContext);
+  if (!context) throw new Error('useTheme must be used within ThemeProvider');
+  return context;
 }

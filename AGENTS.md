@@ -2,12 +2,6 @@
 
 Tech stack: Next.js 16 App Router, TypeScript, Tailwind CSS v4, Framer Motion (lazy), Lucide React.
 
-## Style: Neobrutalism
-
-- Bold black borders (3-4px), flat colors, heavy typography, no gradient/rounded
-- CSS variables in src/styles/tokens.css
-- Utility classes in src/styles/globals.css: .neo-btn, .neo-card, .neo-input, .neo-tag, .neo-section-title, .neo-prose
-
 ## Structure
 
 - App Router under `src/app/` (tsconfig alias `@/*` → `./src/*`)
@@ -46,12 +40,6 @@ interface BlogPost {
 
 Fetch in `src/lib/api/blog.ts`. Use `unstable_cache` or fetch with `next: { revalidate: 900 }`.
 
-## Constraint
-
-- Neobrutalism style EXACT: bold black borders (3-4px), box-shadow: 5px 5px 0px 0px #000, no border-radius, no gradients, uppercase headings, heavy font weights
-- Mobile-first responsive
-- All sections on ONE page (scroll), no subpages except /projects/[slug] (optional)
-
 <!-- CODEGRAPH_START -->
 ## CodeGraph
 
@@ -62,3 +50,10 @@ In repositories indexed by CodeGraph (a `.codegraph/` directory exists at the re
 
 If there is no `.codegraph/` directory, skip CodeGraph entirely — indexing is the user's decision.
 <!-- CODEGRAPH_END -->
+
+## Focused UX behavior
+
+- The site-wide visual language is editorial brutalism. Keep reusable tokens, resets, shared layout primitives, preference fallbacks, and interaction effects in global CSS. Use Tailwind utilities for local one-off composition.
+- The hero uses `public/Mahadi Indra - LinkedIn Photo.png` with `next/image`, an intentional portrait crop, and descriptive alternative text.
+- Keep the `Download CV` link in the hero and contact section. The global footer contains copyright and social links only.
+- `MouseGlow` is decorative and pointer-transparent. It follows fine-pointer movement with CSS custom properties and `requestAnimationFrame`, but must remain disabled for coarse pointers and `prefers-reduced-motion`.

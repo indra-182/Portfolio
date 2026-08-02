@@ -5,141 +5,183 @@ import { z } from 'zod';
 import { ScrollReveal } from '@/components/MotionWrapper';
 
 const contactSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  email: z.string().email('Invalid email address'),
-  message: z.string().min(1, 'Message is required'),
+  name: z.string().min(1, 'Enter your name'),
+  email: z.string().email('Enter a valid email address'),
+  message: z.string().min(1, 'Tell me a little about the opportunity'),
 });
 
 type FormData = z.infer<typeof contactSchema>;
+type FormErrors = Partial<Record<keyof FormData, string>>;
+
+const initialForm: FormData = { name: '', email: '', message: '' };
 
 export default function Contact() {
-  const [form, setForm] = useState<FormData>({ name: '', email: '', message: '' });
-  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
+  const [form, setForm] = useState<FormData>(initialForm);
+  const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    setErrors((prev) => ({ ...prev, [e.target.name]: undefined }));
+  function handleChange(field: keyof FormData, value: string) {
+    setForm((current) => ({ ...current, [field]: value }));
+    setErrors((current) => ({ ...current, [field]: undefined }));
   }
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     setErrors({});
     setStatus('idle');
+
     const result = contactSchema.safeParse(form);
     if (!result.success) {
-      const fieldErrors: Partial<Record<keyof FormData, string>> = {};
+      const fieldErrors: FormErrors = {};
       for (const issue of result.error.issues) {
-        const key = issue.path[0] as keyof FormData;
-        if (!fieldErrors[key]) fieldErrors[key] = issue.message;
+        const field = issue.path[0] as keyof FormData;
+        if (!fieldErrors[field]) fieldErrors[field] = issue.message;
       }
       setErrors(fieldErrors);
       return;
     }
 
     setStatus('sending');
-    const mailto = `mailto:mahadiindra2@gmail.com?subject=Contact from ${encodeURIComponent(form.name)}&body=${encodeURIComponent(form.message)}%0A%0AFrom: ${encodeURIComponent(form.email)}`;
-    window.location.href = mailto;
-    setForm({ name: '', email: '', message: '' });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(result.data),
+      });
+      const payload = (await response.json()) as { success?: boolean };
+
+      if (!response.ok || !payload.success) throw new Error('Contact request failed');
+
+      setForm(initialForm);
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    }
   }
 
   return (
-    <section id="contact" className="border-t border-border px-6 py-24">
-      <div className="mx-auto max-w-(--container)">
+    <section id="contact" className="section section--contact" aria-labelledby="contact-heading">
+      <div className="section-shell contact-layout">
         <ScrollReveal>
-          <div className="section-header">
-            <h2 className="section-title">Contact</h2>
-            <p className="section-sub">
-              Let&apos;s work together. Send me a message and I&apos;ll get back to you.
+          <div className="contact-intro">
+            <p className="eyebrow">Let&apos;s work together</p>
+            <h2 id="contact-heading">Have a complex product to make clearer?</h2>
+            <p>
+              I am open to frontend and full-stack engineering opportunities. Send a note or use one
+              of the direct links below.
             </p>
+            <div className="contact-links" aria-label="Direct contact links">
+              <a href="mailto:mahadiindra2@gmail.com">mahadiindra2@gmail.com</a>
+              <a
+                href="https://www.linkedin.com/in/mahadiindra182/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn <span aria-hidden="true">↗</span>
+              </a>
+              <a href="/resume.pdf" download>
+                Download CV <span aria-hidden="true">↗</span>
+              </a>
+            </div>
           </div>
         </ScrollReveal>
 
-        <ScrollReveal delay={0.15}>
-          <form onSubmit={handleSubmit} className="max-w-lg space-y-5">
-            <div>
-              <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-text">
-                Name
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                autoComplete="name"
-                value={form.name}
-                onChange={handleChange}
-                className="form-input"
-                aria-invalid={Boolean(errors.name)}
-                aria-describedby={errors.name ? 'name-error' : undefined}
-                required
-              />
-              {errors.name && (
-                <p id="name-error" className="mt-1 text-xs text-accent">
-                  {errors.name}
-                </p>
-              )}
-            </div>
-            <div>
-              <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-text">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                value={form.email}
-                onChange={handleChange}
-                className="form-input"
-                aria-invalid={Boolean(errors.email)}
-                aria-describedby={errors.email ? 'email-error' : undefined}
-                required
-              />
-              {errors.email && (
-                <p id="email-error" className="mt-1 text-xs text-accent">
-                  {errors.email}
-                </p>
-              )}
-            </div>
-            <div>
-              <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-text">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={4}
-                autoComplete="off"
-                value={form.message}
-                onChange={handleChange}
-                className="form-input resize-y"
-                aria-invalid={Boolean(errors.message)}
-                aria-describedby={errors.message ? 'message-error' : undefined}
-                required
-              />
-              {errors.message && (
-                <p id="message-error" className="mt-1 text-xs text-accent">
-                  {errors.message}
-                </p>
-              )}
-            </div>
-            <button
-              type="submit"
-              disabled={status === 'sending'}
-              className="btn btn--primary w-full disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {status === 'sending' ? 'Sending...' : 'Send Message'}
-            </button>
-            {status === 'success' && (
-              <p className="text-center text-sm text-emerald-600 dark:text-emerald-400">
-                Message sent successfully!
-              </p>
-            )}
-            {status === 'error' && (
-              <p className="text-center text-sm text-accent">
-                Something went wrong. Please try again.
-              </p>
-            )}
+        <ScrollReveal delay={0.1}>
+          <form
+            className="contact-form"
+            onSubmit={handleSubmit}
+            aria-labelledby="contact-form-heading"
+          >
+            <fieldset>
+              <legend id="contact-form-heading">Send a message</legend>
+
+              <div className="form-field">
+                <label htmlFor="name">
+                  Name <span aria-hidden="true">*</span>
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  value={form.name}
+                  onChange={(event) => handleChange('name', event.target.value)}
+                  aria-invalid={Boolean(errors.name)}
+                  aria-describedby={errors.name ? 'name-error' : undefined}
+                  required
+                />
+                {errors.name && (
+                  <p id="name-error" className="form-error">
+                    {errors.name}
+                  </p>
+                )}
+              </div>
+
+              <div className="form-field">
+                <label htmlFor="email">
+                  Email <span aria-hidden="true">*</span>
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  value={form.email}
+                  onChange={(event) => handleChange('email', event.target.value)}
+                  aria-invalid={Boolean(errors.email)}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
+                  required
+                />
+                {errors.email && (
+                  <p id="email-error" className="form-error">
+                    {errors.email}
+                  </p>
+                )}
+              </div>
+
+              <div className="form-field">
+                <label htmlFor="message">
+                  Message <span aria-hidden="true">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  value={form.message}
+                  onChange={(event) => handleChange('message', event.target.value)}
+                  aria-invalid={Boolean(errors.message)}
+                  aria-describedby={errors.message ? 'message-error' : undefined}
+                  required
+                />
+                {errors.message && (
+                  <p id="message-error" className="form-error">
+                    {errors.message}
+                  </p>
+                )}
+              </div>
+
+              <button
+                className="button button--primary"
+                type="submit"
+                disabled={status === 'sending'}
+              >
+                {status === 'sending' ? 'Sending...' : 'Send message'}
+                <span aria-hidden="true">↗</span>
+              </button>
+
+              <div className="form-status" aria-live="polite">
+                {status === 'success' && (
+                  <p className="form-success">Thanks. Your message is on its way.</p>
+                )}
+                {status === 'error' && (
+                  <p className="form-error">
+                    The form is unavailable. Please email{' '}
+                    <a href="mailto:mahadiindra2@gmail.com">mahadiindra2@gmail.com</a> directly.
+                  </p>
+                )}
+              </div>
+            </fieldset>
           </form>
         </ScrollReveal>
       </div>

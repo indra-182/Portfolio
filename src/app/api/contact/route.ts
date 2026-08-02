@@ -79,14 +79,23 @@ export async function POST(request: Request) {
 
     const resend = getResend();
 
-    if (resend) {
-      await resend.emails.send({
-        from: 'Portfolio Contact <onboarding@resend.dev>',
-        to: 'mahadiindra2@gmail.com',
-        subject: `Portfolio Contact from ${name}`,
-        text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-        replyTo: email,
-      });
+    if (!resend) {
+      return NextResponse.json(
+        { success: false, error: 'Email delivery is not configured' },
+        { status: 503 },
+      );
+    }
+
+    const { error } = await resend.emails.send({
+      from: 'Portfolio Contact <onboarding@resend.dev>',
+      to: 'mahadiindra2@gmail.com',
+      subject: `Portfolio Contact from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      replyTo: email,
+    });
+
+    if (error) {
+      return NextResponse.json({ success: false, error: 'Failed to send email' }, { status: 502 });
     }
 
     return NextResponse.json({ success: true });

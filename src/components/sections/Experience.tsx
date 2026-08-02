@@ -1,45 +1,54 @@
-'use client';
-
 import { experiences } from '@/data/experience';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/MotionWrapper';
 
 export default function Experience() {
   return (
-    <section id="experience" className="border-t border-border px-6 py-24">
-      <div className="mx-auto max-w-(--container)">
+    <section
+      id="experience"
+      className="section section--experience"
+      aria-labelledby="experience-heading"
+    >
+      <div className="section-shell">
         <ScrollReveal>
-          <div className="section-header">
-            <h2 className="section-title">Experience</h2>
+          <div className="section-heading section-heading--row">
+            <div>
+              <p className="eyebrow">Professional experience</p>
+              <h2 id="experience-heading">Delivery experience across the stack.</h2>
+            </div>
+            <p className="section-heading__aside">
+              One employer, multiple product environments, and a steady move from implementation to
+              frontend ownership.
+            </p>
           </div>
         </ScrollReveal>
 
-        <StaggerContainer className="relative border-l border-border">
-          {experiences.map((exp, i) => (
-            <StaggerItem key={i} className="relative pl-10 pb-10 last:pb-0">
-              <span
-                aria-hidden="true"
-                className="absolute -left-1.5 top-1.5 size-3 rounded-full border-2 border-bg bg-accent"
-              />
-              <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                  <h3 className="text-lg font-semibold tracking-tight text-text">{exp.role}</h3>
-                  <p className="text-sm text-text-tertiary">{exp.company}</p>
+        <StaggerContainer className="experience-list">
+          {experiences.map((experience, index) => (
+            <StaggerItem key={`${experience.company}-${experience.role}`}>
+              <article
+                className={`experience-entry ${index === 0 ? 'experience-entry--primary' : ''}`}
+              >
+                <div className="experience-entry__marker" aria-hidden="true">
+                  <span>{String(index + 1).padStart(2, '0')}</span>
                 </div>
-                <span className="tag-pill tag-pill--accent mt-1 w-fit sm:mt-0">{exp.period}</span>
-              </div>
-              {exp.achievements.length > 0 && (
-                <ul className="mt-4 space-y-2">
-                  {exp.achievements.map((achievement, j) => (
-                    <li key={j} className="flex gap-3 text-sm leading-relaxed text-text-secondary">
-                      <span
-                        aria-hidden="true"
-                        className="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-tertiary"
-                      />
-                      {achievement}
-                    </li>
-                  ))}
-                </ul>
-              )}
+                <div className="experience-entry__content">
+                  <div className="experience-entry__header">
+                    <div>
+                      <p className="eyebrow">{experience.company}</p>
+                      <h3>{experience.role}</h3>
+                    </div>
+                    <p className="experience-entry__period">{experience.period}</p>
+                  </div>
+
+                  {experience.achievements.length > 0 && (
+                    <ul className="experience-entry__highlights">
+                      {experience.achievements.map((achievement) => (
+                        <li key={achievement}>{achievement}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </article>
             </StaggerItem>
           ))}
         </StaggerContainer>

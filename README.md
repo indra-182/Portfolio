@@ -34,3 +34,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Portfolio UX notes
+
+- The hero portrait uses `public/Mahadi Indra - LinkedIn Photo.png` through `next/image`, with an intentional upper-center crop and descriptive alternative text.
+- `Download CV` is available in the hero and contact section. It is intentionally omitted from the footer, which stays focused on copyright and social links.
+- `MouseGlow` is a decorative pointer-following accent rendered with CSS custom properties and `requestAnimationFrame`. It uses no WebGL or cursor replacement, has `pointer-events: none`, and is disabled for coarse pointers and `prefers-reduced-motion` users.
+
+## Styling direction
+
+The site uses editorial brutalism: oversized type, a rigid grid, sharp rules, flat theme-aware surfaces, and a warm paper, ink, and signal-orange palette. Reusable foundations live in global CSS, while local one-off composition may use Tailwind utilities.

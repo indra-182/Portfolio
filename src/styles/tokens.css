@@ -1,21 +1,60 @@
 :root {
-  --neo-bg: #fffdf7;
-  --neo-text: #1a1a1a;
-  --neo-border: #000000;
-  --neo-accent-1: #e86030;
-  --neo-accent-2: #1e6b9e;
-  --neo-accent-3: #ffd700;
-  --neo-font-sans: 'Geist', system-ui, sans-serif;
-  --neo-font-mono: 'Geist Mono', monospace;
-  --neo-shadow: 5px 5px 0px 0px #000;
-  --neo-border-width: 3px;
-  --neo-radius: 0px;
+  --color-canvas: #f4efe5;
+  --color-surface: #fffaf1;
+  --color-surface-strong: #e7ded0;
+  --color-ink: #171614;
+  --color-ink-soft: #403b33;
+  --color-muted: #6f685c;
+  --color-faint: #9b9283;
+  --color-line: #c9beae;
+  --color-accent: #e35b2e;
+  --color-accent-strong: #b63b18;
+  --color-accent-soft: #f3c2a9;
+  --color-success: #18734e;
+  --color-inverse: #f4efe5;
+  --font-sans:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: var(--font-sans);
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  --content-max: 86rem;
+  --nav-width: 14.5rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --border-thin: 1px;
+  --border-strong: 2px;
+  --radius-none: 0;
+  --shadow-lift: 0.55rem 0.55rem 0 var(--color-ink);
+  --shadow-lift-accent: 0.55rem 0.55rem 0 var(--color-accent);
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 160ms;
+  --duration-base: 240ms;
 }
 
 .dark {
-  --neo-bg: #1a1a1a;
-  --neo-text: #fffdf7;
-  --neo-accent-1: #ff6b35;
-  --neo-accent-2: #1e6b9e;
-  --neo-accent-3: #ffd700;
+  --color-canvas: #151412;
+  --color-surface: #201e1a;
+  --color-surface-strong: #2b2822;
+  --color-ink: #f5efe4;
+  --color-ink-soft: #d4cabe;
+  --color-muted: #aaa095;
+  --color-faint: #7e766b;
+  --color-line: #514a40;
+  --color-accent: #f47a47;
+  --color-accent-strong: #ff9b6e;
+  --color-accent-soft: #51291d;
+  --color-success: #69ce9a;
+  --color-inverse: #151412;
+  --shadow-lift: 0.55rem 0.55rem 0 #000;
+  --shadow-lift-accent: 0.55rem 0.55rem 0 var(--color-accent);
 }

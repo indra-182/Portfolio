@@ -1,51 +1,82 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function Hero() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="hero" className="relative flex min-h-dvh items-center overflow-hidden px-6 pt-24">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-32 -top-32 h-128 w-lg rounded-full opacity-[0.06]"
-        style={{
-          background: 'radial-gradient(circle, var(--accent) 0%, transparent 70%)',
-        }}
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-32 -left-32 h-96 w-[24rem] rounded-full opacity-[0.04]"
-        style={{
-          background: 'radial-gradient(circle, var(--accent) 0%, transparent 70%)',
-        }}
-      />
-      <div className="relative mx-auto w-full max-w-(--container)">
+    <section id="hero" className="hero section" aria-labelledby="hero-heading">
+      <div className="section-shell hero__shell">
         <motion.div
-          initial={reduce ? false : { opacity: 0, y: 32 }}
+          className="hero__content"
+          initial={reduce ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="mb-5 text-sm font-medium tracking-wide text-accent">Hi, my name is</p>
-          <h1 className="max-w-4xl text-5xl font-semibold leading-[1.05] tracking-[-0.06em] sm:text-6xl lg:text-7xl">
-            Building thoughtful <span className="text-accent">digital products.</span>
+          <p className="eyebrow">Software Engineer / Frontend Engineer</p>
+          <h1 id="hero-heading">
+            Mahadi <span>Indra</span>
+            <br />
+            Manurung
           </h1>
-          <p className="mt-6 max-w-xl text-lg font-medium tracking-[-0.02em] text-text sm:text-xl">
-            I&apos;m Indra, a software engineer.
+          <p className="hero__positioning">
+            Frontend Engineer building reliable digital products for complex financial systems.
           </p>
-          <p className="mt-2 max-w-xl text-base leading-relaxed text-text-secondary">
-            Building fast, accessible web experiences with modern tools.
+          <p className="hero__intro">
+            I build transaction-heavy interfaces for banking, fintech, and enterprise teams, with
+            full-stack experience when the work needs a wider view.
           </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <a href="#projects" className="btn btn--primary">
-              View Work
+
+          <div className="hero__actions">
+            <a className="button button--primary" href="#projects">
+              View selected work
+              <span aria-hidden="true">↗</span>
             </a>
-            <a href="#contact" className="btn btn--outline">
-              Get in Touch
+            <a className="button button--quiet" href="/resume.pdf" download>
+              Download CV
             </a>
           </div>
+
+          <dl className="hero__meta">
+            <div>
+              <dt>Based in</dt>
+              <dd>Jakarta, Indonesia</dd>
+            </div>
+            <div>
+              <dt>Experience</dt>
+              <dd>5+ years</dd>
+            </div>
+            <div>
+              <dt>Availability</dt>
+              <dd>Frontend / full-stack</dd>
+            </div>
+          </dl>
         </motion.div>
+
+        <motion.aside
+          className="hero__card"
+          aria-label="Mahadi Indra Manurung profile"
+          initial={reduce ? false : { opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div className="portrait-slot">
+            <Image
+              className="portrait-image"
+              src="/Mahadi Indra - LinkedIn Photo.png"
+              alt="Mahadi Indra Manurung, a frontend engineer, seated outdoors"
+              fill
+              priority
+              sizes="(max-width: 48rem) calc(100vw - 2rem), (max-width: 64rem) calc(100vw - 3rem), 28rem"
+            />
+          </div>
+          <div className="hero__card-footer">
+            <p className="eyebrow">Currently building</p>
+            <p>Interfaces that make complex financial workflows easier to trust.</p>
+          </div>
+        </motion.aside>
       </div>
     </section>
   );

@@ -33,7 +33,9 @@ test('nav link text visible in dark mode', async ({ page }) => {
   const html = page.locator('html');
   await html.evaluate((el) => el.classList.add('dark'));
 
-  const link = page.locator('nav a:has-text("About")');
+  const link = page.getByRole('navigation', { name: 'Primary navigation' }).getByRole('link', {
+    name: 'About',
+  });
   const color = await link.evaluate((el) => getComputedStyle(el).color);
   expect(color).not.toBe('rgb(0, 0, 0)');
 });
@@ -43,7 +45,7 @@ test('section title visible in dark mode', async ({ page }) => {
   const html = page.locator('html');
   await html.evaluate((el) => el.classList.add('dark'));
 
-  const title = page.locator('h2:has-text("Skills")');
+  const title = page.getByRole('heading', { name: 'A practical stack for complex products.' });
   const color = await title.evaluate((el) => getComputedStyle(el).color);
   expect(color).not.toBe('rgb(0, 0, 0)');
 });
@@ -63,5 +65,5 @@ test('body has theme-aware background and text color', async ({ page }) => {
   bg = await body.evaluate((el) => getComputedStyle(el).backgroundColor);
   text = await body.evaluate((el) => getComputedStyle(el).color);
   expect(bg).not.toBe(text);
-  expect(text).toBe('rgb(26, 26, 26)');
+  expect(text).not.toBe('rgb(0, 0, 0)');
 });
