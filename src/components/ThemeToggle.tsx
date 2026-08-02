@@ -1,27 +1,26 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { LuMoon, LuSun } from 'react-icons/lu';
 import { useTheme } from '@/lib/theme-provider';
-import { LuSun, LuMoon } from 'react-icons/lu';
 
 export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const id = setTimeout(() => setMounted(true), 0);
-    return () => clearTimeout(id);
+    const timer = window.setTimeout(() => setMounted(true), 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
-  const toggle = () => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
+  const nextTheme = resolvedTheme === 'dark' ? 'light' : 'dark';
 
   return (
     <button
-      onClick={toggle}
-      className="grid size-9 place-items-center rounded border border-border text-text-tertiary transition-colors hover:border-text-secondary hover:bg-surface-hover hover:text-text"
-      aria-label={
-        mounted ? `Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} mode` : 'Toggle theme'
-      }
+      className="theme-toggle"
+      type="button"
+      onClick={() => setTheme(nextTheme)}
+      aria-label={mounted ? `Switch to ${nextTheme} mode` : 'Toggle theme'}
     >
       {mounted && resolvedTheme === 'dark' ? <LuSun size={16} /> : <LuMoon size={16} />}
     </button>

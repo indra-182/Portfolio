@@ -1,82 +1,139 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { LuMenu, LuX } from 'react-icons/lu';
 import ThemeToggle from './ThemeToggle';
 
 const navLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
+  { href: '#hero', label: 'Home' },
+  { href: '#projects', label: 'Work' },
   { href: '#experience', label: 'Experience' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#testimonials', label: 'Testimonials' },
-  { href: '#blog', label: 'Blog' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#about', label: 'About' },
+  { href: '#blog', label: 'Writing' },
   { href: '#contact', label: 'Contact' },
 ];
 
+function Links({
+  active,
+  onNavigate,
+  isHome,
+}: {
+  active: string;
+  onNavigate?: () => void;
+  isHome: boolean;
+}) {
+  return (
+    <ul className="nav-links">
+      {navLinks.map((link) => (
+        <li key={link.href}>
+          <a
+            href={isHome ? link.href : `/${link.href}`}
+            onClick={onNavigate}
+            aria-current={isHome && active === link.href.slice(1) ? 'location' : undefined}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function Navbar() {
-  const [active, setActive] = useState('');
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const [active, setActive] = useState('hero');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const isHome = pathname === '/';
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+    const sections = navLinks
+      .map((link) => document.getElementById(link.href.slice(1)))
+      .filter((section): section is HTMLElement => Boolean(section));
 
-  useEffect(() => {
-    const ids = navLinks.map((l) => l.href.slice(1));
-    const observers: IntersectionObserver[] = [];
-
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
+    const observers = sections.map((section) => {
       const observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) setActive(id);
+          if (entry.isIntersecting) setActive(section.id);
         },
-        { rootMargin: '-40% 0px -55% 0px', threshold: 0 },
+        { rootMargin: '-35% 0px -55% 0px', threshold: 0 },
       );
-      observer.observe(el);
-      observers.push(observer);
+      observer.observe(section);
+      return observer;
     });
 
-    return () => observers.forEach((o) => o.disconnect());
+    return () => observers.forEach((observer) => observer.disconnect());
   }, []);
 
+  useEffect(() => {
+    document.body.dataset.menuOpen = menuOpen ? 'true' : 'false';
+    return () => {
+      delete document.body.dataset.menuOpen;
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key !== 'Escape') return;
+
+      setMenuOpen(false);
+      window.requestAnimationFrame(() => menuButtonRef.current?.focus());
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [menuOpen]);
+
+  function handleNavigate(restoreFocus = false) {
+    setMenuOpen(false);
+    if (restoreFocus) {
+      window.requestAnimationFrame(() => menuButtonRef.current?.focus());
+    }
+  }
+
   return (
-    <nav
-      aria-label="Primary"
-      className={`fixed inset-x-0 top-0 z-50 border-b border-border transition-colors duration-300 ${
-        scrolled ? 'bg-bg/80 backdrop-blur-lg' : 'bg-transparent'
-      }`}
-    >
-      <div className="mx-auto flex max-w-(--container) items-center justify-between px-6 py-3">
-        <a href="#" className="text-lg font-semibold tracking-tight text-text">
-          Indra.dev
+    <header className="site-header">
+      <div className="nav-shell">
+        <a className="brand" href={isHome ? '#hero' : '/#hero'} onClick={() => handleNavigate()}>
+          <span className="brand-mark" aria-hidden="true">
+            MI
+          </span>
+          <span className="brand-word">Indra.dev</span>
         </a>
 
-        <div className="hidden items-center gap-1 md:flex">
-          {navLinks.map((link) => {
-            const isActive = active === link.href.slice(1);
-            return (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`rounded px-3 py-2 text-sm font-medium transition-colors ${
-                  isActive
-                    ? 'text-accent'
-                    : 'text-text-tertiary hover:bg-surface-hover hover:text-text'
-                }`}
-              >
-                {link.label}
-              </a>
-            );
-          })}
+        <nav className="nav-menu" aria-label="Primary navigation">
+          <Links active={active} onNavigate={() => handleNavigate()} isHome={isHome} />
+        </nav>
+
+        <div className="nav-tools">
+          <span className="availability-badge">Open to work</span>
+          <ThemeToggle />
+          <button
+            ref={menuButtonRef}
+            className="menu-toggle"
+            type="button"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? <LuX size={18} /> : <LuMenu size={18} />}
+          </button>
         </div>
 
-        <ThemeToggle />
+        <nav
+          id="mobile-navigation"
+          className="mobile-nav"
+          aria-label="Mobile navigation"
+          hidden={!menuOpen}
+        >
+          <Links active={active} onNavigate={() => handleNavigate(true)} isHome={isHome} />
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 }

@@ -23,13 +23,26 @@ Blog Section di portfolio fetch dari `https://blog-mahadi-indra.vercel.app/api/p
 - Nama, headline (role + value proposition)
 - CTA ganda: "Lihat Proyek" & "Hubungi Saya"
 - Animasi ringan (opsional, lazy-load, jangan block LCP)
-- Avatar/foto (next/image, WebP/AVIF)
+- Foto profil memakai `public/Mahadi Indra - LinkedIn Photo.png` via `next/image`, dengan crop portrait upper-center dan alt text deskriptif
 
 ### B. About Section
 
 - Narasi singkat 3-4 paragraf
 - Highlight angka: years, projects, tech stack
 - Link download CV (PDF statis)
+
+### A.1. Focused UX adjustments
+
+- `Download CV` tersedia di hero dan contact section, tetapi tidak di global footer. Footer mempertahankan copyright dan social links.
+- `MouseGlow` memberikan accent halo ringan yang mengikuti pointer fine dengan CSS custom properties dan `requestAnimationFrame`.
+- Interaksi glow bersifat dekoratif dengan `pointer-events: none`, tidak mengganti cursor, dan tidak menghalangi navigasi atau contact form.
+- Glow nonaktif pada coarse/touch pointers dan saat `prefers-reduced-motion` aktif.
+
+### A.2. Visual redesign
+
+- Homepage and project case-study routes share an editorial brutalist visual system with a fixed desktop section rail and mobile overlay drawer.
+- The palette uses warm paper, near-black ink, and signal orange. Reusable foundations stay in global CSS, while local one-off composition may use Tailwind utilities.
+- Sharp rules, flat surfaces, oversized type, and restrained offset shadows define the system. Rounded cards and atmospheric gradients are not used outside the pointer glow.
 
 ### C. Skills Section
 
@@ -174,6 +187,7 @@ src/
 │ ├── page.tsx (compose semua section)
 │ └── api/contact/route.ts (POST form handler)
 ├── components/
+│ ├── MouseGlow.tsx (decorative fine-pointer interaction)
 │ ├── Navbar.tsx (fixed top, smooth-scroll links)
 │ ├── ThemeToggle.tsx (sun/moon, next-themes)
 │ ├── Footer.tsx (copyright, social links)

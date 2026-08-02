@@ -10,54 +10,47 @@ export interface SkillCategory {
 
 export const skills: SkillCategory[] = [
   {
-    category: 'Frameworks & Libraries',
+    category: 'Frontend',
     items: [
-      { name: 'React.js', level: 'Advanced' },
+      { name: 'TypeScript', level: 'Advanced' },
+      { name: 'React', level: 'Advanced' },
       { name: 'Next.js', level: 'Advanced' },
-      { name: 'Angular', level: 'Proficient' },
       { name: 'Vue', level: 'Proficient' },
+      { name: 'Angular', level: 'Proficient' },
+      { name: 'Preact', level: 'Proficient' },
+    ],
+  },
+  {
+    category: 'Data & state',
+    items: [
       { name: 'TanStack Query', level: 'Advanced' },
+      { name: 'Redux Toolkit', level: 'Advanced' },
+      { name: 'Redux', level: 'Advanced' },
+      { name: 'Zustand', level: 'Proficient' },
       { name: 'Axios', level: 'Advanced' },
     ],
   },
   {
-    category: 'State Management',
-    items: [
-      { name: 'Redux', level: 'Advanced' },
-      { name: 'Zustand', level: 'Proficient' },
-    ],
-  },
-  {
-    category: 'Styling',
+    category: 'UI & quality',
     items: [
       { name: 'Tailwind CSS', level: 'Advanced' },
-      { name: 'ANT Design', level: 'Advanced' },
-      { name: 'Shadcn UI', level: 'Proficient' },
-      { name: 'Bootstrap', level: 'Proficient' },
+      { name: 'Ant Design', level: 'Advanced' },
       { name: 'MUI', level: 'Proficient' },
+      { name: 'shadcn/ui', level: 'Proficient' },
+      { name: 'Playwright', level: 'Proficient' },
     ],
   },
   {
-    category: 'Tools',
-    items: [
-      { name: 'Git', level: 'Advanced' },
-      { name: 'NPM', level: 'Advanced' },
-      { name: 'Yarn', level: 'Proficient' },
-      { name: 'Bun', level: 'Proficient' },
-      { name: 'Postman', level: 'Advanced' },
-      { name: 'JIRA', level: 'Proficient' },
-    ],
-  },
-  {
-    category: 'Testing',
-    items: [{ name: 'Playwright', level: 'Proficient' }],
-  },
-  {
-    category: 'Backend',
+    category: 'Backend & platforms',
     items: [
       { name: 'Java', level: 'Proficient' },
       { name: 'Spring Boot', level: 'Proficient' },
+      { name: 'Node.js', level: 'Proficient' },
       { name: 'PostgreSQL', level: 'Proficient' },
+      { name: 'MySQL', level: 'Familiar' },
+      { name: 'Firebase', level: 'Familiar' },
+      { name: 'Git', level: 'Advanced' },
+      { name: 'Jira', level: 'Proficient' },
     ],
   },
 ];
